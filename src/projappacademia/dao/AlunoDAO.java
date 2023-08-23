@@ -50,57 +50,55 @@ public class AlunoDAO {
     }
     }
 
-    public ArrayList<Aluno> listarAluno(String cpf) throws ExceptionMVC{
-        String sql = "select * from aluno where cpf =  '" + cpf + "'";
+    public Aluno listarAluno(String cpf) throws ExceptionMVC {
+    String sql = "select * from aluno where cpf =  '" + cpf + "'";
+    
+    Connection connection = null;
+    PreparedStatement pStatement = null;
+    Aluno aluno = null; // Inicialize como nulo
+    
+    try {
+        connection = new ConnectionMVC().getConnection();
+        pStatement = connection.prepareStatement(sql);
+        ResultSet rs = pStatement.executeQuery(sql);
         
-        Connection connection = null;
-        PreparedStatement pStatement = null;
-        ArrayList<Aluno> alunos = null;
-        
-        try{
-            connection = new ConnectionMVC().getConnection();
-            pStatement = connection.prepareStatement(sql);
-            ResultSet rs = pStatement.executeQuery(sql);
-            
-            if(rs!=null){
-                alunos = new ArrayList<Aluno>();
-                if(rs.next()){
-                    Aluno aluno = new Aluno();
-                    aluno.setNome(rs.getString("nome"));
-                    aluno.setCpf(rs.getString("cpf"));
-                    aluno.setEmail(rs.getString("email"));
-                    aluno.setTel(rs.getString("tel"));
-                    aluno.setDataNascimento(rs.getString("dataNascimento"));
-                    aluno.setEndereco(rs.getString("endereco"));
-                    aluno.setCep(rs.getString("cep"));
-                    aluno.setPlano(rs.getString("plano"));
-                    aluno.setPreco(rs.getInt("preco"));
-                    aluno.setFormaPagamento(rs.getString("formaPagamento"));
-                    
-                    alunos.add(aluno);
-                    
-                }
+        if (rs != null && rs.next()) {
+            aluno = new Aluno();
+            aluno.setNome(rs.getString("nome"));
+            aluno.setCpf(rs.getString("cpf"));
+            aluno.setEmail(rs.getString("email"));
+            aluno.setTel(rs.getString("tel"));
+            aluno.setDataNascimento(rs.getString("dataNascimento"));
+            aluno.setEndereco(rs.getString("endereco"));
+            aluno.setCep(rs.getString("cep"));
+            aluno.setPlano(rs.getString("plano"));
+            aluno.setPreco(rs.getInt("preco"));
+            aluno.setFormaPagamento(rs.getString("formaPagamento"));
+        }
+    } catch (SQLException e) {
+        throw new ExceptionMVC("Erro ao consultar aluno: " + e);
+    } finally {
+        try {
+            if (pStatement != null) {
+                pStatement.close();
             }
-        }catch(SQLException e) {
-            throw new ExceptionMVC("Erro ao consultar aluno: " + e);
-        } finally {
-            try{
-                if(pStatement!=null) {pStatement.close();}
-            } catch(SQLException e) {
-                throw new ExceptionMVC("Erro ao fechar o statement: " + e);
-            }
-            
-            try{
-                if(connection!=null) {connection.close();}
-            } catch(SQLException e) {
-                throw new ExceptionMVC("Erro ao fechar a conexão: " + e);
-            }
+        } catch (SQLException e) {
+            throw new ExceptionMVC("Erro ao fechar o statement: " + e);
         }
         
-        return alunos;
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            throw new ExceptionMVC("Erro ao fechar a conexão: " + e);
+        }
     }
     
-    public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
+    return aluno;
+}
+    
+   /* public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
         String sql = "select * from aluno where cpf = '" + cpf + "'";
         System.out.println(sql);
         Connection connection = null;
@@ -138,5 +136,5 @@ public class AlunoDAO {
         }
         return aluno;
       
-    }
+    }*/
 }

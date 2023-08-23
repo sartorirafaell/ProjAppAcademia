@@ -6,9 +6,10 @@
 package projappacademia.view;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 import projappacademia.controller.AlunoController;
 import projappacademia.model.Aluno;
 /**
@@ -36,21 +37,14 @@ public class janelaInicial extends javax.swing.JFrame {
                 t.drawImage(i,0,0, this.getSize().width,this.getSize().height,this);
             }
         };
-        jTextFieldNome = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jButtonBuscar = new javax.swing.JButton();
         jButtonRegistra = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
-        jLabelNomeAluno = new javax.swing.JLabel();
         jLabelCpfAluno = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("ou");
 
         jButtonBuscar.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
         jButtonBuscar.setText("Buscar");
@@ -93,11 +87,6 @@ public class janelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jLabelNomeAluno.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelNomeAluno.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jLabelNomeAluno.setForeground(new java.awt.Color(153, 0, 0));
-        jLabelNomeAluno.setText("Insira o nome do Aluno");
-
         jLabelCpfAluno.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jLabelCpfAluno.setForeground(new java.awt.Color(153, 0, 0));
         jLabelCpfAluno.setText("CPF do aluno");
@@ -112,27 +101,16 @@ public class janelaInicial extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonBuscar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonRegistra))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabelNomeAluno))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelCpfAluno)
-                                .addGap(0, 55, Short.MAX_VALUE))
-                            .addComponent(jFormattedTextFieldCPF))))
-                .addGap(32, 32, 32))
+                    .addComponent(jLabelCpfAluno))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,14 +123,9 @@ public class janelaInicial extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel3)))
                 .addGap(78, 78, 78)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNomeAluno)
-                    .addComponent(jLabelCpfAluno))
+                .addComponent(jLabelCpfAluno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBuscar)
@@ -184,22 +157,27 @@ public class janelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        Aluno aluno = new Aluno();
-        try{
-            AlunoController alunoController = new AlunoController();
-        aluno = alunoController.listarAlunoInicial(jFormattedTextFieldCPF.getText());
-        
-        
-        if(aluno!=null){
-        janelaInfoAluno jan4 = new janelaInfoAluno();
-        jan4.setVisible(true);
-        jan4.setSize(1000,673);
-        jan4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);}
-        
+      Aluno aluno = null;
+    try {
+        AlunoController alunoController = new AlunoController();
+        aluno = alunoController.listarAluno(jFormattedTextFieldCPF.getText());
+
+        if (aluno != null) {
+            janelaInfoAluno jan4 = new janelaInfoAluno(aluno);
+            jan4.setVisible(true);
+            jan4.setSize(1000, 673);
+            jan4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             
+            jFormattedTextFieldCPF.setText(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "O Aluno não foi encontrado");
+            jFormattedTextFieldCPF.setText(null);
         }
-        catch(Exception e){
-        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar o aluno");
+    }
+
         
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -253,12 +231,9 @@ public class janelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonRegistra;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCpfAluno;
-    private javax.swing.JLabel jLabelNomeAluno;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 }

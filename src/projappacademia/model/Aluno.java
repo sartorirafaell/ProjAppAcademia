@@ -2,7 +2,7 @@
 package projappacademia.model;
 
 
-import java.util.ArrayList;
+
 import projappacademia.dao.AlunoDAO;
 import projappacademia.dao.ExceptionMVC;
 
@@ -30,13 +30,13 @@ public class Aluno {
          new AlunoDAO().cadastrarAluno(aluno);
     }
     
-    public ArrayList<Aluno> listarAluno(String cpf) throws ExceptionMVC{
+    public Aluno listarAluno(String cpf) throws ExceptionMVC{
         return new AlunoDAO().listarAluno(cpf);
     }
     
-    public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
+    /*public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
         return new AlunoDAO().listarAlunoInicial(cpf);
-    }
+    }*/
 
     public int getPreco() {
         return preco;

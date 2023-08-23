@@ -3,7 +3,6 @@ package projappacademia.controller;
 
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import projappacademia.dao.ExceptionMVC;
 
 import projappacademia.model.Aluno;
@@ -23,12 +22,12 @@ public class AlunoController {
         return false;
     }
     
-    public ArrayList<Aluno> listarAluno(String cpf) throws ExceptionMVC{
+    public Aluno listarAluno(String cpf) throws ExceptionMVC{
         return new Aluno().listarAluno(cpf);
     }
-    public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
+   /* public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
         return new Aluno().listarAlunoInicial(cpf);
-    }
+    }*/
     public boolean validarCPF(String cpf){
         for(int i = 0; i<cpf.length(); i++){
             if(!Character.isDigit(cpf.charAt(i))){
