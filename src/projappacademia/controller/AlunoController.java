@@ -9,13 +9,13 @@ import projappacademia.model.Aluno;
 
 public class AlunoController {
     
-    public boolean cadastrarAluno(String nome,String cpf,String email,String tel,String dataNascimento,String endereco,String cep,String plano,int preco,String formaPagamento) throws ParseException, ExceptionMVC{
+    public boolean cadastrarAluno(String nome,String cpf,String email,String tel,String dataNascimento,String endereco,String cep,String plano,String formaPagamento) throws ParseException, ExceptionMVC{
     
         if(nome != null && nome.length()>0 && validarCPF(cpf) && email != null && email.length()>0 && tel != null && tel.length()>0 && validarData(dataNascimento) && endereco != null 
-                && endereco.length()>0 && cep != null && plano != null && preco !=0 && formaPagamento != null) {
+                && endereco.length()>0 && cep != null && plano != null  && formaPagamento != null) {
         
             
-            Aluno aluno = new Aluno(nome, cpf, email, tel, dataNascimento, endereco, cep, plano, preco, formaPagamento);
+            Aluno aluno = new Aluno(nome, cpf, email, tel, dataNascimento, endereco, cep, plano, formaPagamento);
             aluno.cadastrarAluno(aluno);
          return true;  
         }
@@ -28,6 +28,19 @@ public class AlunoController {
    /* public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
         return new Aluno().listarAlunoInicial(cpf);
     }*/
+    
+    public void editarAluno(String nome,String cpf,String email,String tel,String dataNascimento,String endereco,String cep,String plano,String formaPagamento) throws ParseException, ExceptionMVC{
+         if(nome != null && nome.length()>0 && validarCPF(cpf) && email != null && email.length()>0 && tel != null && tel.length()>0 && validarData(dataNascimento) && endereco != null 
+                && endereco.length()>0 && cep != null && plano != null  && formaPagamento != null) {
+        
+            
+            Aluno aluno = new Aluno(nome, cpf, email, tel, dataNascimento, endereco, cep, plano, formaPagamento);
+            aluno.editarAluno(aluno);
+          
+        }
+        
+    
+    }
     public boolean validarCPF(String cpf){
         for(int i = 0; i<cpf.length(); i++){
             if(!Character.isDigit(cpf.charAt(i))){

@@ -16,7 +16,7 @@ public class ConnectionMVC {
             e.printStackTrace();
         }
         try{
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/appacademia", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/appacademia1", "root", "");
         }catch(SQLException e){
             e.printStackTrace();
         }

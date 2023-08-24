@@ -453,8 +453,7 @@ public class janelaCriaAluno extends javax.swing.JFrame {
             AlunoController alunoController = new AlunoController();
             sucesso = alunoController.cadastrarAluno(jTextFieldNome.getText(), jFormattedTextFieldCPF.getText(), jTextFieldEmail.getText(), jFormattedTextFieldTel.getText(), 
                     jFormattedTextFieldDtNasc.getText(), jTextFieldEndereco.getText(), jFormattedTextFieldCEP.getText(), 
-                    String.valueOf(jComboBoxPlano.getSelectedItem()), 
-                    Integer.parseInt(String.valueOf(jTextFieldPreco.getText())), 
+                    String.valueOf(jComboBoxPlano.getSelectedItem()),
                     tipoPagamento);
             if(sucesso){
                 JOptionPane.showMessageDialog(null, "O cadastro foi realizado com sucesso.");

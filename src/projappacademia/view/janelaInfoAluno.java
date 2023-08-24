@@ -9,13 +9,14 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import projappacademia.controller.AlunoController;
 import projappacademia.model.Aluno;
 /**
  *
  * @author 771900057
  */
 public class janelaInfoAluno extends javax.swing.JFrame {
-
+    String tipoPagamento;   
     /**
      * Creates new form janelaInfoAluno
      */
@@ -58,8 +59,8 @@ public class janelaInfoAluno extends javax.swing.JFrame {
             }
         };
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBtEditarAluno = new javax.swing.JButton();
+        jBtFecharPlano = new javax.swing.JButton();
         jLabelNome = new javax.swing.JLabel();
         jTextNome = new javax.swing.JTextField();
         jLabelEmail = new javax.swing.JLabel();
@@ -92,13 +93,18 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setPreferredSize(new java.awt.Dimension(899, 603));
 
-        jButton1.setBackground(new java.awt.Color(36, 36, 36));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Editar aluno");
+        jBtEditarAluno.setBackground(new java.awt.Color(36, 36, 36));
+        jBtEditarAluno.setForeground(new java.awt.Color(255, 255, 255));
+        jBtEditarAluno.setText("Editar aluno");
+        jBtEditarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtEditarAlunoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(36, 36, 36));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Fechar plano");
+        jBtFecharPlano.setBackground(new java.awt.Color(36, 36, 36));
+        jBtFecharPlano.setForeground(new java.awt.Color(255, 255, 255));
+        jBtFecharPlano.setText("Fechar plano");
 
         jLabelNome.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNome.setText("Nome:");
@@ -196,11 +202,21 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jRbCredito.setForeground(new java.awt.Color(255, 255, 255));
         jRbCredito.setText("Crédito");
         jRbCredito.setContentAreaFilled(false);
+        jRbCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRbCreditoActionPerformed(evt);
+            }
+        });
 
         buttonGroupFormPag.add(jRbDebito);
         jRbDebito.setForeground(new java.awt.Color(255, 255, 255));
         jRbDebito.setText("Débito");
         jRbDebito.setContentAreaFilled(false);
+        jRbDebito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRbDebitoActionPerformed(evt);
+            }
+        });
 
         jTableInfoAluno.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -261,9 +277,9 @@ public class janelaInfoAluno extends javax.swing.JFrame {
                         .addGap(206, 206, 206)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(jBtEditarAluno)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)
+                                .addComponent(jBtFecharPlano)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonVolta))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,8 +362,8 @@ public class janelaInfoAluno extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
+                            .addComponent(jBtEditarAluno)
+                            .addComponent(jBtFecharPlano)
                             .addComponent(jButtonVolta))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -427,6 +443,39 @@ public class janelaInfoAluno extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBoxPlanoActionPerformed
 
+    private void jBtEditarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtEditarAlunoActionPerformed
+        if(jRbCredito.isSelected()){tipoPagamento = "Credito";}
+        else if(jRbDebito.isSelected()){tipoPagamento = "Debito";}
+        
+        String nome = jTextNome.getText();
+        String cpf = jFormattedTextCPF.getText();
+        String email = jTextEmail.getText();
+        String tel = jFormattedTextTel.getText();
+        String dataNascimento = jFormattedTextDtNasc.getText();
+        String endereco = jTextEnd.getText();
+        String cep = jFormattedTextCEP.getText();
+        String plano = String.valueOf(jComboBoxPlano.getSelectedItem());
+        
+        
+        try{
+        AlunoController alunoController = new AlunoController();
+        alunoController.editarAluno(nome, cpf, email, tel, dataNascimento, endereco, cep, plano, tipoPagamento);
+        
+            JOptionPane.showMessageDialog(null, "Informações do aluno atualizadas com sucesso!");
+        }catch(Exception e){
+            //JOptionPane.showMessageDialog(null, "Não foi possível atualizar as informações do aluno");
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jBtEditarAlunoActionPerformed
+
+    private void jRbCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbCreditoActionPerformed
+       
+    }//GEN-LAST:event_jRbCreditoActionPerformed
+
+    private void jRbDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbDebitoActionPerformed
+       
+    }//GEN-LAST:event_jRbDebitoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -464,8 +513,8 @@ public class janelaInfoAluno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupFormPag;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBtEditarAluno;
+    private javax.swing.JButton jBtFecharPlano;
     private javax.swing.JButton jButtonVolta;
     private javax.swing.JComboBox<String> jComboBoxPlano;
     private javax.swing.JFormattedTextField jFormattedTextCEP;

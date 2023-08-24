@@ -8,9 +8,9 @@ import projappacademia.dao.ExceptionMVC;
 
 public class Aluno {
     private String nome, cpf, email, tel, dataNascimento, endereco, cep, plano, formaPagamento;
-    private int preco;
+    
 
-    public Aluno(String nome, String cpf, String email, String tel, String dataNascimento, String endereco, String cep, String plano,int preco, String formaPagamento) {
+    public Aluno(String nome, String cpf, String email, String tel, String dataNascimento, String endereco, String cep, String plano, String formaPagamento) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -19,7 +19,6 @@ public class Aluno {
         this.endereco = endereco;
         this.cep = cep;
         this.plano = plano;
-        this.preco = preco;
         this.formaPagamento = formaPagamento;
     }
     
@@ -34,18 +33,14 @@ public class Aluno {
         return new AlunoDAO().listarAluno(cpf);
     }
     
+    public void editarAluno(Aluno aluno) throws ExceptionMVC{
+        new AlunoDAO().editarAluno(aluno);
+    }
     /*public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
         return new AlunoDAO().listarAlunoInicial(cpf);
     }*/
 
-    public int getPreco() {
-        return preco;
-    }
-
-    public void setPreco(int preco) {
-        this.preco = preco;
-    }
-
+   
     public String getPlano() {
         return plano;
     }
