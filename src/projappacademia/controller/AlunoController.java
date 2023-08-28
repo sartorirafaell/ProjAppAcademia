@@ -38,9 +38,19 @@ public class AlunoController {
             aluno.editarAluno(aluno);
           
         }
-        
+
     
     }
+     public void excluirAluno(String cpf) throws ExceptionMVC
+     {
+         if(validarCPF(cpf))
+         {
+           Aluno aluno = new Aluno();
+            aluno.excluirAluno(cpf);  
+         }    
+     }
+     
+    
     public boolean validarCPF(String cpf){
         for(int i = 0; i<cpf.length(); i++){
             if(!Character.isDigit(cpf.charAt(i))){

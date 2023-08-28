@@ -1,6 +1,8 @@
 
 package projappacademia.model;
 
+import java.sql.SQLException;
+import projappacademia.dao.AlunoDAO;
 import projappacademia.dao.UsuarioDAO;
 
 public class Usuario {
@@ -19,6 +21,14 @@ public class Usuario {
        UsuarioDAO usuarioDAO = new UsuarioDAO();
        usuarioDAO.autenticacaoUsuario(usuario);
    }
+   
+   public void editarSenha(Usuario usuario) throws SQLException
+   {
+       UsuarioDAO usuarioDAO = new UsuarioDAO();
+       usuarioDAO.editarSenha(usuario);
+   }
+   
+  
 
     public String getNome() {
         return nome;

@@ -2,11 +2,14 @@
 
 package projappacademia.view;
 
+
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JOptionPane;
+import projappacademia.controller.UsuarioController;
 
 
 /**
@@ -199,7 +202,17 @@ public class janelaEsqueciSenha extends javax.swing.JFrame {
     private void jButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmActionPerformed
         String login = jTextLogin.getText();
         String senha = jNewPassword.getText();
-        
+        String repeteSenha = jPasswordTest.getText();
+        try
+        {
+            UsuarioController usuarioController = new UsuarioController();
+            usuarioController.editarSenha(login, senha, repeteSenha);
+
+            dispose();
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Não foi possível trocar a senha do usuário");
+        }
             
         
     }//GEN-LAST:event_jButtonConfirmActionPerformed

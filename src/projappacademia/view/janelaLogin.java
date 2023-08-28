@@ -212,11 +212,11 @@ public class janelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_LabelEsqueciSenhaMouseClicked
 
     private void LabelEsqueciSenhaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelEsqueciSenhaMouseEntered
-       LabelEsqueciSenha.setText("<html><u><font color='blue'>Esqueci minha senha</font></u></html>");
+       LabelEsqueciSenha.setText("<html><u><font color='blue'>esqueci minha senha</font></u></html>");
     }//GEN-LAST:event_LabelEsqueciSenhaMouseEntered
 
     private void LabelEsqueciSenhaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelEsqueciSenhaMouseExited
-        LabelEsqueciSenha.setText("<html><t>Esqueci minha senha</t></html>");
+        LabelEsqueciSenha.setText("<html><t>esqueci minha senha</t></html>");
     }//GEN-LAST:event_LabelEsqueciSenhaMouseExited
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
@@ -239,6 +239,7 @@ public class janelaLogin extends javax.swing.JFrame {
                 jan3.setVisible(true);
                 jan3.setBounds(300,300,375,300);
                 jan3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                jan3.recebeNome(login);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Usuario ou senha invalida.");

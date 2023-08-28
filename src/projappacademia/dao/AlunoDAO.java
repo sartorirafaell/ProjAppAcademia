@@ -136,46 +136,34 @@ public class AlunoDAO {
                
              }
         
-    
-   /* public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
-        String sql = "select * from aluno where cpf = '" + cpf + "'";
-        System.out.println(sql);
-        Connection connection = null;
-        PreparedStatement pStatement = null;
-        Aluno aluno = new Aluno();
+    public void excluirAluno(String cpf)throws ExceptionMVC
+    {
+        String sql= "DELETE FROM aluno WHERE cpf = '" + cpf + "'";
         
+        PreparedStatement pStatement = null;
+        Connection connection = null;
+
         try{
             connection = new ConnectionMVC().getConnection();
             pStatement = connection.prepareStatement(sql);
-            ResultSet rs = pStatement.executeQuery(sql);
-            
-            if(rs!=null){
-                
-                if(rs.next()){
-                    
-                    aluno.setCpf(rs.getString("cpf"));
-                    System.out.println(aluno.getCpf());
-                    
-                }
-            }
-        }catch(SQLException e) {
-            throw new ExceptionMVC("Erro ao consultar aluno: " + e);
+            pStatement.executeUpdate();
+        }catch(SQLException e){
+            throw new ExceptionMVC("Erro ao fechar o plano do Aluno: " + e);
         } finally {
             try{
-                if(pStatement!=null) {pStatement.close();}
-            } catch(SQLException e) {
-                throw new ExceptionMVC("Erro ao fechar o statement: " + e);
+                if (pStatement != null) {pStatement.close();}
+            } catch(SQLException e){
+                throw new ExceptionMVC("Erro ao fechar o Statement: " + e);
             }
-            
             try{
-                if(connection!=null) {connection.close();}
-            } catch(SQLException e) {
+                if(connection != null) {connection.close();}
+            }catch(SQLException e){
                 throw new ExceptionMVC("Erro ao fechar a conexão: " + e);
             }
-        }
-        return aluno;
-      
-    }*/
+        
+          }
+    }
+   
 
    
 }

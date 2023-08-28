@@ -39,8 +39,11 @@ public class Aluno {
     /*public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
         return new AlunoDAO().listarAlunoInicial(cpf);
     }*/
+    public void excluirAluno(String cpf) throws ExceptionMVC
+    {
+        new AlunoDAO().excluirAluno(cpf);
+    }
 
-   
     public String getPlano() {
         return plano;
     }

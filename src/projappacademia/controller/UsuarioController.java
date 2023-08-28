@@ -1,6 +1,7 @@
 
 package projappacademia.controller;
 
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import projappacademia.model.Usuario;
 
@@ -18,4 +19,15 @@ public class UsuarioController {
         }
         return false;
     }
+    
+     public void editarSenha(String login, String senha, String repeteSenha) throws SQLException
+     {
+         if(login !=null && senha != null && repeteSenha != null)
+         {
+             Usuario usuario = new Usuario(login, senha);
+             usuario.editarSenha(usuario);
+         }
+     }
+    
+     
 }

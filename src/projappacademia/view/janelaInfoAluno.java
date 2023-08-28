@@ -105,6 +105,11 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jBtFecharPlano.setBackground(new java.awt.Color(36, 36, 36));
         jBtFecharPlano.setForeground(new java.awt.Color(255, 255, 255));
         jBtFecharPlano.setText("Fechar plano");
+        jBtFecharPlano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtFecharPlanoActionPerformed(evt);
+            }
+        });
 
         jLabelNome.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNome.setText("Nome:");
@@ -475,6 +480,19 @@ public class janelaInfoAluno extends javax.swing.JFrame {
     private void jRbDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbDebitoActionPerformed
        
     }//GEN-LAST:event_jRbDebitoActionPerformed
+
+    private void jBtFecharPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtFecharPlanoActionPerformed
+       String cpf = jFormattedTextCPF.getText();
+        try 
+        {
+            AlunoController alunoController = new AlunoController();
+            alunoController.excluirAluno(cpf);
+            JOptionPane.showMessageDialog(null, "Plano fechado com sucesso!");
+            dispose();
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jBtFecharPlanoActionPerformed
 
     /**
      * @param args the command line arguments

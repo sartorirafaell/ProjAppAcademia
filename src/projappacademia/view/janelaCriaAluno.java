@@ -447,6 +447,8 @@ public class janelaCriaAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonAbriPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbriPlanoActionPerformed
+       //Talvez criar uma janela nova após a criação do aluno para a adição das modalidades do plano do aluno
+        
         boolean sucesso;
         
         try{
@@ -458,6 +460,7 @@ public class janelaCriaAluno extends javax.swing.JFrame {
             if(sucesso){
                 JOptionPane.showMessageDialog(null, "O cadastro foi realizado com sucesso.");
                 this.limpaNovoCliente();
+                dispose();
             } else{
                 JOptionPane.showMessageDialog(null, "Os campos não foram preenchidos corretamente.");
             }
