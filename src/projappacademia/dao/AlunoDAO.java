@@ -1,6 +1,7 @@
 
 package projappacademia.dao;
 
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -164,6 +165,32 @@ public class AlunoDAO {
           }
     }
    
+     public void inscreverAlunoEmModalidades(int alunoId, List<Integer> modalidadeIds) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
 
+        try {
+            connection = new ConnectionMVC().getConnection();
+
+            // Inserir o aluno nas modalidades na tabela aluno_has_modalidades.
+            String sql = "INSERT INTO aluno_has_modalidade (aluno_codigo, modalidade_codigo) VALUES (?, ?)";
+            preparedStatement = connection.prepareStatement(sql);
+
+            for (int modalidadeId : modalidadeIds) {
+                preparedStatement.setInt(1, alunoId);
+                preparedStatement.setInt(2, modalidadeId);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao inscrever aluno nas modalidades: " + e.getMessage());
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
    
 }

@@ -29,9 +29,6 @@ public class janelaCriaAluno extends javax.swing.JFrame {
          jFormattedTextFieldTel.setText(null);
          jComboBoxPlano.setSelectedIndex(0);
          jTextFieldPreco.setText("0");
-         jRadioButtonAcad.setSelected(false);
-         jRadioButtonCrossfit.setSelected(false);
-         jRadioButtonNatacao.setSelected(false);
          buttonGroupFormPagamento.clearSelection();
         }
     public janelaCriaAluno() {
@@ -77,10 +74,6 @@ public class janelaCriaAluno extends javax.swing.JFrame {
         jFormattedTextFieldDtNasc = new javax.swing.JFormattedTextField();
         jLabel28 = new javax.swing.JLabel();
         jComboBoxPlano = new javax.swing.JComboBox<>();
-        jLabel29 = new javax.swing.JLabel();
-        jRadioButtonAcad = new javax.swing.JRadioButton();
-        jRadioButtonNatacao = new javax.swing.JRadioButton();
-        jRadioButtonCrossfit = new javax.swing.JRadioButton();
         jLabel30 = new javax.swing.JLabel();
         jRadioButtonCredito = new javax.swing.JRadioButton();
         jRadioButtonDebito = new javax.swing.JRadioButton();
@@ -163,28 +156,13 @@ public class janelaCriaAluno extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Plano:");
 
-        jComboBoxPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Básico", "Intermediario", "Completo" }));
+        jComboBoxPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Basico", "Intermediario", "Completo" }));
         jComboBoxPlano.setRequestFocusEnabled(false);
         jComboBoxPlano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxPlanoActionPerformed(evt);
             }
         });
-
-        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel29.setText("Modalidades:");
-
-        jRadioButtonAcad.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonAcad.setText("Academia");
-        jRadioButtonAcad.setContentAreaFilled(false);
-
-        jRadioButtonNatacao.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonNatacao.setText("Natação");
-        jRadioButtonNatacao.setContentAreaFilled(false);
-
-        jRadioButtonCrossfit.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonCrossfit.setText("Crossfit");
-        jRadioButtonCrossfit.setContentAreaFilled(false);
 
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Forma de pagamento:");
@@ -290,40 +268,31 @@ public class janelaCriaAluno extends javax.swing.JFrame {
                             .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(jFormattedTextFieldTel, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                             .addComponent(jFormattedTextFieldCPF))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel30)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRadioButtonDebito)
-                                            .addComponent(jRadioButtonCredito)))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jButtonAbriPlano)
-                                        .addGap(4, 4, 4)))
+                                .addComponent(jButtonAbriPlano)
+                                .addGap(4, 4, 4)
                                 .addComponent(jButtonVoltar)
                                 .addGap(37, 37, 37))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabelPreco)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel28)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBoxPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel29)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButtonAcad)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRadioButtonNatacao)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jRadioButtonCrossfit)))
-                                .addContainerGap(1, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jComboBoxPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(189, 189, 189))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabelPreco)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButtonDebito)
+                                    .addComponent(jRadioButtonCredito))
                                 .addContainerGap())))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jFormattedTextFieldDtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -368,15 +337,9 @@ public class janelaCriaAluno extends javax.swing.JFrame {
                             .addComponent(jComboBoxPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel29)
-                            .addComponent(jRadioButtonAcad)
-                            .addComponent(jRadioButtonNatacao)
-                            .addComponent(jRadioButtonCrossfit))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelPreco)
                             .addComponent(jTextFieldPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel30)
                             .addComponent(jRadioButtonCredito))
@@ -562,16 +525,12 @@ public class janelaCriaAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabelPreco;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButtonAcad;
     private javax.swing.JRadioButton jRadioButtonCredito;
-    private javax.swing.JRadioButton jRadioButtonCrossfit;
     private javax.swing.JRadioButton jRadioButtonDebito;
-    private javax.swing.JRadioButton jRadioButtonNatacao;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableCriaAluno;
     private javax.swing.JTextField jTextFieldEmail;

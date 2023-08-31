@@ -3,12 +3,19 @@ package projappacademia.model;
 
 
 
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import projappacademia.dao.AlunoDAO;
 import projappacademia.dao.ExceptionMVC;
 
 public class Aluno {
+    private int id;
     private String nome, cpf, email, tel, dataNascimento, endereco, cep, plano, formaPagamento;
-    
+    private ArrayList<String> modalidades = new ArrayList<>();
 
     public Aluno(String nome, String cpf, String email, String tel, String dataNascimento, String endereco, String cep, String plano, String formaPagamento) {
         this.nome = nome;
@@ -27,6 +34,14 @@ public class Aluno {
     public void cadastrarAluno(Aluno aluno) throws ExceptionMVC{
         
          new AlunoDAO().cadastrarAluno(aluno);
+    }
+    
+    public void inscreverEmModalidades(List<Integer> modalidadeIds) throws ExceptionMVC {
+        try {
+            new AlunoDAO().inscreverAlunoEmModalidades(this.getId(), modalidadeIds);
+        } catch (SQLException ex) {
+            throw new ExceptionMVC("Erro ao inscrever aluno em modalidades: " + ex.getMessage());
+        }
     }
     
     public Aluno listarAluno(String cpf) throws ExceptionMVC{
@@ -54,6 +69,14 @@ public class Aluno {
 
     public String getNome() {
         return nome;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {
@@ -114,6 +137,14 @@ public class Aluno {
 
     public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
+    }
+
+    public ArrayList<String> getModalidades() {
+        return modalidades;
+    }
+
+    public void setModalidades(ArrayList<String> modalidades) {
+        this.modalidades = modalidades;
     }
     
 }

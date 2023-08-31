@@ -109,49 +109,37 @@
                                   <Component id="jFormattedTextFieldTel" alignment="0" pref="172" max="32767" attributes="0"/>
                                   <Component id="jFormattedTextFieldCPF" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="232" max="32767" attributes="0"/>
+                              <EmptySpace pref="238" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jRadioButtonDebito" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jRadioButtonCredito" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jButtonAbriPlano" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jButtonAbriPlano" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                       <Component id="jButtonVoltar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabelPreco" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jTextFieldPreco" min="-2" pref="91" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
                                               <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jComboBoxPlano" min="-2" pref="100" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jRadioButtonAcad" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jRadioButtonNatacao" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                              <Component id="jRadioButtonCrossfit" min="-2" max="-2" attributes="0"/>
-                                          </Group>
                                       </Group>
-                                      <EmptySpace pref="1" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabelPreco" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextFieldPreco" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                      <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jRadioButtonDebito" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jRadioButtonCredito" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -212,17 +200,10 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButtonAcad" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButtonNatacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButtonCrossfit" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelPreco" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextFieldPreco" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jRadioButtonCredito" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -368,7 +349,7 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value=""/>
-                    <StringItem index="1" value="B&#xe1;sico"/>
+                    <StringItem index="1" value="Basico"/>
                     <StringItem index="2" value="Intermediario"/>
                     <StringItem index="3" value="Completo"/>
                   </StringArray>
@@ -381,41 +362,6 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel29">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Modalidades:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButtonAcad">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Academia"/>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButtonNatacao">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Nata&#xe7;&#xe3;o"/>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButtonCrossfit">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Crossfit"/>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel30">
               <Properties>
