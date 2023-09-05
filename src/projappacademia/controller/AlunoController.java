@@ -3,7 +3,8 @@ package projappacademia.controller;
 
 
 import java.text.ParseException;
-import java.util.List;
+import java.util.ArrayList;
+
 import projappacademia.dao.ExceptionMVC;
 
 import projappacademia.model.Aluno;
@@ -23,8 +24,12 @@ public class AlunoController {
         return false;
     }
     
-    public void inscreverEmModalidades(List<Integer> modalidadeIds) throws ExceptionMVC {
-        new Aluno().inscreverEmModalidades(modalidadeIds);     
+    public void inscreverEmModalidades(int alunoId, ArrayList<Integer> modalidadeIds) throws ExceptionMVC {
+        new Aluno().inscreverEmModalidades(alunoId, modalidadeIds);     
+    }
+    
+    public int buscaIdAluno (String cpf) throws ExceptionMVC{
+        return new Aluno().buscaIdAluno(cpf);
     }
     
     public Aluno listarAluno(String cpf) throws ExceptionMVC{

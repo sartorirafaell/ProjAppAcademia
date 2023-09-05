@@ -36,7 +36,7 @@ public class Aluno {
          new AlunoDAO().cadastrarAluno(aluno);
     }
     
-    public void inscreverEmModalidades(List<Integer> modalidadeIds) throws ExceptionMVC {
+    public void inscreverEmModalidades(int alunoId, ArrayList<Integer> modalidadeIds) throws ExceptionMVC {
         try {
             new AlunoDAO().inscreverAlunoEmModalidades(this.getId(), modalidadeIds);
         } catch (SQLException ex) {
@@ -46,6 +46,11 @@ public class Aluno {
     
     public Aluno listarAluno(String cpf) throws ExceptionMVC{
         return new AlunoDAO().listarAluno(cpf);
+    }
+    
+    public int buscaIdAluno(String cpf) throws ExceptionMVC
+    {
+        return new AlunoDAO().buscaIdAluno(cpf);
     }
     
     public void editarAluno(Aluno aluno) throws ExceptionMVC{

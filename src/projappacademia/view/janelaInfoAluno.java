@@ -427,7 +427,7 @@ public class janelaInfoAluno extends javax.swing.JFrame {
     private void jComboBoxPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPlanoActionPerformed
         DefaultTableModel tableModel = (DefaultTableModel) jTableInfoAluno.getModel();
             tableModel.setRowCount(0); // Limpa todas as linhas da tabela
-        if(jComboBoxPlano.getSelectedItem().equals("Básico")){
+        if(jComboBoxPlano.getSelectedItem().equals("Basico")){
 
              for (int i = 1; i <= 12; i++) {
             tableModel.addRow(new Object[] { i, "R$ 100"});

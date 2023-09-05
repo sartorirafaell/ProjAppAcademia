@@ -7,9 +7,12 @@ package projappacademia.view;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projappacademia.controller.AlunoController;
+import projappacademia.model.Aluno;
+
 /**
  *
  * @author 771900057
@@ -410,9 +413,9 @@ public class janelaCriaAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonAbriPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbriPlanoActionPerformed
-       //Talvez criar uma janela nova após a criação do aluno para a adição das modalidades do plano do aluno
-        
+      
         boolean sucesso;
+       Aluno aluno = null;
         
         try{
             AlunoController alunoController = new AlunoController();
@@ -420,10 +423,15 @@ public class janelaCriaAluno extends javax.swing.JFrame {
                     jFormattedTextFieldDtNasc.getText(), jTextFieldEndereco.getText(), jFormattedTextFieldCEP.getText(), 
                     String.valueOf(jComboBoxPlano.getSelectedItem()),
                     tipoPagamento);
+            aluno = alunoController.listarAluno(jFormattedTextFieldCPF.getText());
             if(sucesso){
-                JOptionPane.showMessageDialog(null, "O cadastro foi realizado com sucesso.");
-                this.limpaNovoCliente();
-                dispose();
+                janelaAlunoModalidade jan6 = new janelaAlunoModalidade(aluno);
+                jan6.setVisible(true);
+                //jan6.setSize(878,384);
+                jan6.setBounds(300,300,878,384);
+                jan6.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+               
+                
             } else{
                 JOptionPane.showMessageDialog(null, "Os campos não foram preenchidos corretamente.");
             }
@@ -444,7 +452,7 @@ public class janelaCriaAluno extends javax.swing.JFrame {
     private void jComboBoxPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPlanoActionPerformed
         DefaultTableModel tableModel = (DefaultTableModel) jTableCriaAluno.getModel();
             tableModel.setRowCount(0); // Limpa todas as linhas da tabela
-        if(jComboBoxPlano.getSelectedItem().equals("Básico")){
+        if(jComboBoxPlano.getSelectedItem().equals("Basico")){
             
             jTextFieldPreco.setText("100");
              for (int i = 1; i <= 12; i++) {

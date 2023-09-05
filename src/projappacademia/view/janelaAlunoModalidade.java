@@ -7,7 +7,6 @@ package projappacademia.view;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import projappacademia.controller.AlunoController;
@@ -17,21 +16,23 @@ import projappacademia.model.Aluno;
  * @author 771900057
  */
 public class janelaAlunoModalidade extends javax.swing.JFrame {
-     List<Integer> modalidadeIds;
+     ArrayList<Integer> modalidadeIds = new ArrayList<Integer>();
     
-    /**
-     * Creates new form janelaAlunoModalidade
-     */
+    
+      
     public janelaAlunoModalidade(Aluno aluno) {
         initComponents();
         
-        jLbCpfAluno.setText(aluno.getCpf());
-        jLbPlanoEscolhido.setText(aluno.getPlano());
+        jTfCpfAluno.setText(aluno.getCpf());
+        jTfPlanoAluno.setText(aluno.getPlano());
         
+     
+    
         
     }
 
     public janelaAlunoModalidade() {
+        initComponents();
     }
 
     
@@ -50,16 +51,16 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
         };
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLbCpfAluno = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLbPlanoEscolhido = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jRbAcademia = new javax.swing.JRadioButton();
-        jRbNatacao = new javax.swing.JRadioButton();
-        jRbCrossfit = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jBtEnviar = new javax.swing.JButton();
         jBtVoltar = new javax.swing.JButton();
+        jTfCpfAluno = new javax.swing.JTextField();
+        jTfPlanoAluno = new javax.swing.JTextField();
+        jCbAcademia = new javax.swing.JCheckBox();
+        jCbNatacao = new javax.swing.JCheckBox();
+        jCbCrossfit = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,30 +72,13 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CPF:");
 
-        jLbCpfAluno.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLbCpfAluno.setForeground(new java.awt.Color(255, 255, 255));
-        jLbCpfAluno.setText("aqui o cpf do aluno");
-
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Plano:");
 
-        jLbPlanoEscolhido.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLbPlanoEscolhido.setForeground(new java.awt.Color(255, 255, 255));
-        jLbPlanoEscolhido.setText("aqui o plano escolhido");
-
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Modalidades:");
-
-        jRbAcademia.setForeground(new java.awt.Color(255, 255, 255));
-        jRbAcademia.setText("Academia");
-
-        jRbNatacao.setForeground(new java.awt.Color(255, 255, 255));
-        jRbNatacao.setText("Natacao");
-
-        jRbCrossfit.setForeground(new java.awt.Color(255, 255, 255));
-        jRbCrossfit.setText("Crossfit");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Aqui o texto muda de acordo com o plano escolhido");
@@ -107,6 +91,50 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
         });
 
         jBtVoltar.setText("Voltar");
+        jBtVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtVoltarActionPerformed(evt);
+            }
+        });
+
+        jTfCpfAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTfCpfAlunoActionPerformed(evt);
+            }
+        });
+
+        jTfPlanoAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTfPlanoAlunoActionPerformed(evt);
+            }
+        });
+
+        jCbAcademia.setForeground(new java.awt.Color(255, 255, 255));
+        jCbAcademia.setText("Academia");
+        jCbAcademia.setContentAreaFilled(false);
+        jCbAcademia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbAcademiaActionPerformed(evt);
+            }
+        });
+
+        jCbNatacao.setForeground(new java.awt.Color(255, 255, 255));
+        jCbNatacao.setText("Natacao");
+        jCbNatacao.setContentAreaFilled(false);
+        jCbNatacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbNatacaoActionPerformed(evt);
+            }
+        });
+
+        jCbCrossfit.setForeground(new java.awt.Color(255, 255, 255));
+        jCbCrossfit.setText("Crossfit");
+        jCbCrossfit.setContentAreaFilled(false);
+        jCbCrossfit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbCrossfitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,44 +151,44 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
                         .addGap(35, 35, 35))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(26, 26, 26)
-                                .addComponent(jLbPlanoEscolhido))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLbCpfAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(27, 27, 27)
-                                .addComponent(jRbAcademia)
+                                .addGap(29, 29, 29)
+                                .addComponent(jCbAcademia)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRbNatacao)
+                                .addComponent(jCbNatacao)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRbCrossfit)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jCbCrossfit))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTfCpfAluno)
+                                    .addComponent(jTfPlanoAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))))
+                        .addContainerGap(300, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(61, 61, 61)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLbCpfAluno))
+                    .addComponent(jTfCpfAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLbPlanoEscolhido))
+                    .addComponent(jTfPlanoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jRbAcademia)
-                    .addComponent(jRbNatacao)
-                    .addComponent(jRbCrossfit))
+                    .addComponent(jCbAcademia)
+                    .addComponent(jCbNatacao)
+                    .addComponent(jCbCrossfit))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtEnviar)
@@ -182,7 +210,7 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,30 +228,18 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtEnviarActionPerformed
-        modalidadeIds = new ArrayList<>();
+       
         Aluno aluno = new Aluno();
-        modalidadeIds.clear();
-        //////////////////// CRIAR UM METODO PARA BUSCAR O CODIGO DO ALUNO NO BANCO ////////////////////
-        if(aluno.getPlano().equals("Basico"))
-        {  
-            if(jRbAcademia.isSelected()) { jRbCrossfit.setEnabled(false); jRbNatacao.setEnabled(false); modalidadeIds.add(1); }
-            else if(jRbNatacao.isSelected()) { jRbAcademia.setEnabled(false); jRbCrossfit.setEnabled(false); modalidadeIds.add(2); }
-            else if(jRbCrossfit.isSelected()) { jRbAcademia.setEnabled(false); jRbNatacao.setEnabled(false); modalidadeIds.add(3); }
-            
-        }
-        else if(aluno.getPlano().equals("Intermediario"))
-        {
-            if(jRbAcademia.isSelected() && jRbCrossfit.isSelected()) { jRbNatacao.setEnabled(false); modalidadeIds.add(1); modalidadeIds.add(3); }
-            else if(jRbAcademia.isSelected() && jRbNatacao.isSelected()) { jRbCrossfit.setEnabled(false); modalidadeIds.add(1); modalidadeIds.add(2);}
-            else if(jRbNatacao.isSelected() && jRbCrossfit.isSelected()) { jRbAcademia.setEnabled(false); modalidadeIds.add(2); modalidadeIds.add(3);}
-        }
-        else if(aluno.getPlano().equals("Completo")) { modalidadeIds.add(1); modalidadeIds.add(2); modalidadeIds.add(3);  }
+        
         
          if (!modalidadeIds.isEmpty()) 
          {
             try {
+                 
+                 int alunoId = aluno.buscaIdAluno(aluno.getCpf());
+                 System.out.println(alunoId);
                 AlunoController alunoController = new AlunoController();
-                alunoController.inscreverEmModalidades(modalidadeIds);
+                alunoController.inscreverEmModalidades(alunoId, modalidadeIds);
                 JOptionPane.showMessageDialog(null, "O cadastro da modalidade foi realizado com sucesso.");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -233,9 +249,87 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jBtEnviarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTfCpfAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfCpfAlunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTfCpfAlunoActionPerformed
+
+    private void jBtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtVoltarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBtVoltarActionPerformed
+
+    private void jTfPlanoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfPlanoAlunoActionPerformed
+       
+    }//GEN-LAST:event_jTfPlanoAlunoActionPerformed
+
+    private void jCbAcademiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbAcademiaActionPerformed
+     String plano = jTfPlanoAluno.getText();
+     
+     if (plano.equals("Basico")) {
+        if (jCbAcademia.isSelected()) {
+            modalidadeIds.add(1);
+            jCbNatacao.setEnabled(false);
+            jCbCrossfit.setEnabled(false);
+        }
+        
+     } else if (plano.equals("Intermediario")) {
+        
+         if (jCbAcademia.isSelected() && jCbNatacao.isSelected()) {
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            jCbCrossfit.setEnabled(false);
+        } else if (jCbAcademia.isSelected() && jCbCrossfit.isSelected()) {
+            modalidadeIds.add(1);
+            modalidadeIds.add(3);
+            jCbNatacao.setEnabled(false);
+        }
+     }
+    }//GEN-LAST:event_jCbAcademiaActionPerformed
+
+    private void jCbNatacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbNatacaoActionPerformed
+     escolheMetodos();
+    }//GEN-LAST:event_jCbNatacaoActionPerformed
+
+    private void jCbCrossfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbCrossfitActionPerformed
+    escolheMetodos();
+    }//GEN-LAST:event_jCbCrossfitActionPerformed
+    
+    private void escolheMetodos() {
+    String plano = jTfPlanoAluno.getText();
+    
+    
+    if (plano.equals("Basico")) {
+        if (jCbAcademia.isSelected()) {
+            modalidadeIds.add(1);
+            jCbNatacao.setEnabled(false);
+            jCbCrossfit.setEnabled(false);
+        } else if (jCbNatacao.isSelected()) {
+            modalidadeIds.add(2);
+            jCbAcademia.setEnabled(false);
+            jCbCrossfit.setEnabled(false);
+        } else if (jCbCrossfit.isSelected()) {
+            modalidadeIds.add(3);
+            jCbAcademia.setEnabled(false);
+            jCbNatacao.setEnabled(false);
+        } else {modalidadeIds.clear(); jCbAcademia.setEnabled(true); jCbNatacao.setEnabled(true); jCbCrossfit.setEnabled(true); }
+        
+    } else if (plano.equals("Intermediario")) {
+        if (jCbAcademia.isSelected() && jCbNatacao.isSelected()) {
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            jCbCrossfit.setEnabled(false);
+        } else if (jCbAcademia.isSelected() && jCbCrossfit.isSelected()) {
+            modalidadeIds.add(1);
+            modalidadeIds.add(3);
+            jCbNatacao.setEnabled(false);
+        } else if (jCbNatacao.isSelected() && jCbCrossfit.isSelected()) {
+            modalidadeIds.add(2);
+            modalidadeIds.add(3);
+            jCbAcademia.setEnabled(false);
+        }
+        else {modalidadeIds.clear(); jCbAcademia.setEnabled(true); jCbNatacao.setEnabled(true); jCbCrossfit.setEnabled(true); }
+    }
+}
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -271,16 +365,16 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtEnviar;
     private javax.swing.JButton jBtVoltar;
+    private javax.swing.JCheckBox jCbAcademia;
+    private javax.swing.JCheckBox jCbCrossfit;
+    private javax.swing.JCheckBox jCbNatacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLbCpfAluno;
-    private javax.swing.JLabel jLbPlanoEscolhido;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRbAcademia;
-    private javax.swing.JRadioButton jRbCrossfit;
-    private javax.swing.JRadioButton jRbNatacao;
+    private javax.swing.JTextField jTfCpfAluno;
+    private javax.swing.JTextField jTfPlanoAluno;
     // End of variables declaration//GEN-END:variables
 }

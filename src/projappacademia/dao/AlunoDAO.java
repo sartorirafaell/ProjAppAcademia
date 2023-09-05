@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import projappacademia.model.Aluno;
 
@@ -31,7 +33,7 @@ public class AlunoDAO {
             pStatement.setString(9, aluno.getFormaPagamento()); 
             pStatement.execute();
         
-            System.out.println(aluno.getFormaPagamento());
+            
         }catch(SQLException e){
             throw new ExceptionMVC("Erro ao cadastrar Aluno: " + e);
         } finally {
@@ -49,7 +51,7 @@ public class AlunoDAO {
             
     }
     }
-
+    
     public Aluno listarAluno(String cpf) throws ExceptionMVC {
     String sql = "select * from aluno where cpf =  '" + cpf + "'";
     
@@ -165,24 +167,40 @@ public class AlunoDAO {
           }
     }
    
-     public void inscreverAlunoEmModalidades(int alunoId, List<Integer> modalidadeIds) throws SQLException {
-        Connection connection = null;
+     public void inscreverAlunoEmModalidades(int alunoId, ArrayList<Integer> modalidadeIds) throws SQLException {
+        
+         Connection connection = null;
         PreparedStatement preparedStatement = null;
-
+        
+        
         try {
             connection = new ConnectionMVC().getConnection();
-
-            // Inserir o aluno nas modalidades na tabela aluno_has_modalidades.
+            
             String sql = "INSERT INTO aluno_has_modalidade (aluno_codigo, modalidade_codigo) VALUES (?, ?)";
-            preparedStatement = connection.prepareStatement(sql);
+            System.out.println(sql);
+            preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            for (int modalidadeId : modalidadeIds) {
-                preparedStatement.setInt(1, alunoId);
-                preparedStatement.setInt(2, modalidadeId);
-                preparedStatement.executeUpdate();
+            try(ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){ 
+                
+                if(generatedKeys.next()) { 
+                    alunoId = generatedKeys.getInt(1);
+                
+                } else {
+                    throw new SQLException ("Falha ao recuperar o codigo do aluno recém cadastrado");
+                }
+                for (int modalidadeId : modalidadeIds) {
+                    preparedStatement.setInt(1, alunoId);
+                    preparedStatement.setInt(2, modalidadeId);
+                    preparedStatement.executeUpdate();
+                }
             }
+
+            
+            
         } catch (SQLException e) {
-            throw new SQLException("Erro ao inscrever aluno nas modalidades: " + e.getMessage());
+           // throw new SQLException("Erro ao inscrever aluno nas modalidades: " + e.getMessage());
+            System.out.println(e.getMessage());
+            
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -192,5 +210,30 @@ public class AlunoDAO {
             }
         }
     }
+     
+     public int buscaIdAluno (String cpf) throws ExceptionMVC{
+    String sql = "SELECT codigo from aluno where cpf = ?";
+     Connection connection = null;
+    PreparedStatement pStatement = null;
+    int codAluno = 0;
+    
+    try {
+        connection = new ConnectionMVC().getConnection();
+        pStatement = connection.prepareStatement(sql);
+        pStatement.setString(1, cpf);
+        ResultSet rs = pStatement.executeQuery();
+        
+        //if (rs != null && rs.next()) {
+        if(rs.next()){
+            codAluno = rs.getInt("codigo");
+            System.out.println("esse é o cod aluno:" +codAluno);
+        }
+    } catch (SQLException e) {
+        throw new ExceptionMVC("Erro ao consultar aluno: " + e);
+    }
+    return codAluno;
+    }
+
+   
    
 }
