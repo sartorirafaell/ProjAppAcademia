@@ -38,7 +38,7 @@ public class Aluno {
     
     public void inscreverEmModalidades(int alunoId, ArrayList<Integer> modalidadeIds) throws ExceptionMVC {
         try {
-            new AlunoDAO().inscreverAlunoEmModalidades(this.getId(), modalidadeIds);
+            new AlunoDAO().inscreverAlunoEmModalidades(alunoId, modalidadeIds);
         } catch (SQLException ex) {
             throw new ExceptionMVC("Erro ao inscrever aluno em modalidades: " + ex.getMessage());
         }

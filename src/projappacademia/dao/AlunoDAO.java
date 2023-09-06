@@ -168,48 +168,33 @@ public class AlunoDAO {
     }
    
      public void inscreverAlunoEmModalidades(int alunoId, ArrayList<Integer> modalidadeIds) throws SQLException {
-        
-         Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        
-        
-        try {
-            connection = new ConnectionMVC().getConnection();
-            
-            String sql = "INSERT INTO aluno_has_modalidade (aluno_codigo, modalidade_codigo) VALUES (?, ?)";
-            System.out.println(sql);
-            preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-            try(ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){ 
-                
-                if(generatedKeys.next()) { 
-                    alunoId = generatedKeys.getInt(1);
-                
-                } else {
-                    throw new SQLException ("Falha ao recuperar o codigo do aluno recém cadastrado");
-                }
-                for (int modalidadeId : modalidadeIds) {
-                    preparedStatement.setInt(1, alunoId);
-                    preparedStatement.setInt(2, modalidadeId);
-                    preparedStatement.executeUpdate();
-                }
-            }
+    try {
+        connection = new ConnectionMVC().getConnection();
 
+        String sql = "INSERT INTO aluno_has_modalidade (aluno_codigo, modalidade_codigo) VALUES (?, ?)";
+        preparedStatement = connection.prepareStatement(sql);
+
+        // Inserir as modalidades
+        for (int modalidadeId : modalidadeIds) {
+            preparedStatement.setInt(1, alunoId);
+            preparedStatement.setInt(2, modalidadeId);
+            preparedStatement.executeUpdate();
             
-            
-        } catch (SQLException e) {
-           // throw new SQLException("Erro ao inscrever aluno nas modalidades: " + e.getMessage());
-            System.out.println(e.getMessage());
-            
-        } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
+        }
+    } catch (SQLException e) {
+        throw new SQLException("Erro ao inscrever aluno nas modalidades: " + e.getMessage());
+    } finally {
+        if (preparedStatement != null) {
+            preparedStatement.close();
+        }
+        if (connection != null) {
+            connection.close();
         }
     }
+}
      
      public int buscaIdAluno (String cpf) throws ExceptionMVC{
     String sql = "SELECT codigo from aluno where cpf = ?";
@@ -226,11 +211,13 @@ public class AlunoDAO {
         //if (rs != null && rs.next()) {
         if(rs.next()){
             codAluno = rs.getInt("codigo");
-            System.out.println("esse é o cod aluno:" +codAluno);
+            
+            
         }
     } catch (SQLException e) {
         throw new ExceptionMVC("Erro ao consultar aluno: " + e);
     }
+        System.out.println("esse é o cod aluno:" +codAluno);
     return codAluno;
     }
 

@@ -236,11 +236,12 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
          {
             try {
                  
-                 int alunoId = aluno.buscaIdAluno(aluno.getCpf());
-                 System.out.println(alunoId);
+                 int alunoId = aluno.buscaIdAluno(jTfCpfAluno.getText());
+                 
                 AlunoController alunoController = new AlunoController();
                 alunoController.inscreverEmModalidades(alunoId, modalidadeIds);
                 JOptionPane.showMessageDialog(null, "O cadastro da modalidade foi realizado com sucesso.");
+                dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
