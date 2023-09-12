@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package projappacademia.view;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,10 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import projappacademia.controller.AlunoController;
 import projappacademia.model.Aluno;
-/**
- *
- * @author 771900057
- */
+
 public class janelaAlunoModalidade extends javax.swing.JFrame {
      ArrayList<Integer> modalidadeIds = new ArrayList<Integer>();
     
