@@ -52,6 +52,8 @@ public class AlunoDAO {
     }
     }
     
+   
+    
     public Aluno listarAluno(String cpf) throws ExceptionMVC {
     String sql = "select * from aluno where cpf =  '" + cpf + "'";
     
@@ -101,7 +103,7 @@ public class AlunoDAO {
     
     public void editarAluno(Aluno aluno) throws ExceptionMVC{
         String sql = "UPDATE aluno SET nome=?, cpf=?, email=?, tel=?, dataNascimento=?, endereco=?, cep=?, plano=?, formaPagamento=?" +" WHERE cpf = '" +aluno.getCpf() +"'" ;
-    
+        //String sqlModalidade = "UPDATE aluno_has_modalidade SET modalidade_codigo = "
     Connection connection = null;
     PreparedStatement pStatement = null;
     
@@ -139,17 +141,20 @@ public class AlunoDAO {
                
              }
         
-    public void excluirAluno(String cpf)throws ExceptionMVC
+    public void excluirAluno(String cpf, int aluno_codigo)throws ExceptionMVC
     {
         String sql= "DELETE FROM aluno WHERE cpf = '" + cpf + "'";
-        
+        String sqlModalidade = "DELETE FROM aluno_has_modalidade WHERE aluno_codigo = " +aluno_codigo+"";
         PreparedStatement pStatement = null;
         Connection connection = null;
 
         try{
             connection = new ConnectionMVC().getConnection();
+             pStatement = connection.prepareStatement(sqlModalidade);
+            pStatement.executeUpdate();
             pStatement = connection.prepareStatement(sql);
             pStatement.executeUpdate();
+           
         }catch(SQLException e){
             throw new ExceptionMVC("Erro ao fechar o plano do Aluno: " + e);
         } finally {
@@ -196,6 +201,30 @@ public class AlunoDAO {
     }
 }
      
+      public ArrayList<Integer> retornaModalidadesAluno (int aluno_codigo) throws ExceptionMVC {
+    ArrayList<Integer>modalidadeIds = new ArrayList<>();
+    
+    String sql = "select modalidade_codigo from aluno_has_modalidade where aluno_codigo = ? ";
+    
+    Connection connection = null;
+    PreparedStatement pStatement = null;
+    
+    
+    try{connection = new ConnectionMVC().getConnection();
+        pStatement = connection.prepareStatement(sql);
+        pStatement.setInt(1, aluno_codigo);
+        ResultSet rs = pStatement.executeQuery();
+        
+        while(rs.next()){
+            int modalidadeAluno = rs.getInt("modalidade_codigo");
+            modalidadeIds.add(modalidadeAluno);
+        }
+    } catch(SQLException e){ 
+        throw new ExceptionMVC("Erro ao buscar modalidade do aluno: " + e);
+    }
+    return modalidadeIds;
+}
+      
      public int buscaIdAluno (String cpf) throws ExceptionMVC{
     String sql = "SELECT codigo from aluno where cpf = ?";
      Connection connection = null;
@@ -217,7 +246,7 @@ public class AlunoDAO {
     } catch (SQLException e) {
         throw new ExceptionMVC("Erro ao consultar aluno: " + e);
     }
-        System.out.println("esse é o cod aluno:" +codAluno);
+        
     return codAluno;
     }
 

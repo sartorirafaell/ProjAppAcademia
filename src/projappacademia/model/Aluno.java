@@ -53,14 +53,16 @@ public class Aluno {
     public void editarAluno(Aluno aluno) throws ExceptionMVC{
         new AlunoDAO().editarAluno(aluno);
     }
-    /*public Aluno listarAlunoInicial(String cpf) throws ExceptionMVC{
-        return new AlunoDAO().listarAlunoInicial(cpf);
-    }*/
-    public void excluirAluno(String cpf) throws ExceptionMVC
+   
+    public void excluirAluno(String cpf, int id) throws ExceptionMVC
     {
-        new AlunoDAO().excluirAluno(cpf);
+        new AlunoDAO().excluirAluno(cpf, id);
     }
 
+    public ArrayList<Integer> retornaModalidadesAluno(int aluno_codigo) throws ExceptionMVC{
+       return new AlunoDAO().retornaModalidadesAluno(aluno_codigo);
+    }
+    
     public String getPlano() {
         return plano;
     }
@@ -148,5 +150,7 @@ public class Aluno {
     public void setModalidades(ArrayList<String> modalidades) {
         this.modalidades = modalidades;
     }
+
+    
     
 }

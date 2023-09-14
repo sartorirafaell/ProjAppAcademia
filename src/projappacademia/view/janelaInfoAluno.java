@@ -6,22 +6,20 @@
 package projappacademia.view;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projappacademia.controller.AlunoController;
 import projappacademia.model.Aluno;
-/**
- *
- * @author 771900057
- */
+
 public class janelaInfoAluno extends javax.swing.JFrame {
     String tipoPagamento;   
-    /**
-     * Creates new form janelaInfoAluno
-     */
+   
     public janelaInfoAluno(Aluno aluno) {
         initComponents();
+        
+        ArrayList<Integer> modalidadesAluno = new ArrayList<>();
         
          try {
         jTextNome.setText(aluno.getNome());
@@ -34,6 +32,23 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jComboBoxPlano.setSelectedItem(aluno.getPlano());
         if(aluno.getFormaPagamento().equals("Crédito")){jRbCredito.setSelected(true);}
         else {jRbDebito.setSelected(true);}
+        
+        
+            try {
+                AlunoController alunocont = new AlunoController();
+                int codAluno =  alunocont.buscaIdAluno(jFormattedTextCPF.getText());
+                modalidadesAluno = alunocont.retornaModalidadesAluno(codAluno);
+                
+                for(int i : modalidadesAluno){
+                    if(i == 1){jRbAcad.setSelected(true);}
+                    if(i == 2){jRbNat.setSelected(true);}
+                    if(i == 3){jRbCross.setSelected(true);}
+                }
+               
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,"Erro ao retornar a modalidade do aluno: "+ ex);
+            }
 } catch (NullPointerException ex) {
     ex.printStackTrace();
     JOptionPane.showMessageDialog(this, "Erro ao definir valores nos campos de texto: " + ex.getMessage());
@@ -78,9 +93,9 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jLabelPlano = new javax.swing.JLabel();
         jComboBoxPlano = new javax.swing.JComboBox<>();
         jLabelModalidade = new javax.swing.JLabel();
-        jRadioButton11 = new javax.swing.JRadioButton();
-        jRadioButton12 = new javax.swing.JRadioButton();
-        jRadioButton13 = new javax.swing.JRadioButton();
+        jRbAcad = new javax.swing.JRadioButton();
+        jRbNat = new javax.swing.JRadioButton();
+        jRbCross = new javax.swing.JRadioButton();
         jLabelFormPagamento = new javax.swing.JLabel();
         jRbCredito = new javax.swing.JRadioButton();
         jRbDebito = new javax.swing.JRadioButton();
@@ -188,17 +203,17 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jLabelModalidade.setForeground(new java.awt.Color(255, 255, 255));
         jLabelModalidade.setText("Modalidades:");
 
-        jRadioButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton11.setText("Academia");
-        jRadioButton11.setContentAreaFilled(false);
+        jRbAcad.setForeground(new java.awt.Color(255, 255, 255));
+        jRbAcad.setText("Academia");
+        jRbAcad.setContentAreaFilled(false);
 
-        jRadioButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton12.setText("Natação");
-        jRadioButton12.setContentAreaFilled(false);
+        jRbNat.setForeground(new java.awt.Color(255, 255, 255));
+        jRbNat.setText("Natação");
+        jRbNat.setContentAreaFilled(false);
 
-        jRadioButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton13.setText("Crossfit");
-        jRadioButton13.setContentAreaFilled(false);
+        jRbCross.setForeground(new java.awt.Color(255, 255, 255));
+        jRbCross.setText("Crossfit");
+        jRbCross.setContentAreaFilled(false);
 
         jLabelFormPagamento.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFormPagamento.setText("Forma de pagamento:");
@@ -296,11 +311,11 @@ public class janelaInfoAluno extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabelModalidade)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButton11)
+                                        .addComponent(jRbAcad)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton12)
+                                        .addComponent(jRbNat)
                                         .addGap(26, 26, 26)
-                                        .addComponent(jRadioButton13)))
+                                        .addComponent(jRbCross)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabelFormPagamento)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -349,9 +364,9 @@ public class janelaInfoAluno extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelModalidade)
-                            .addComponent(jRadioButton11)
-                            .addComponent(jRadioButton12)
-                            .addComponent(jRadioButton13))
+                            .addComponent(jRbAcad)
+                            .addComponent(jRbNat)
+                            .addComponent(jRbCross))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelFormPagamento)
@@ -486,8 +501,9 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         try 
         {
             AlunoController alunoController = new AlunoController();
-            alunoController.excluirAluno(cpf);
-            JOptionPane.showMessageDialog(null, "Plano fechado com sucesso!");
+           int id = alunoController.buscaIdAluno(cpf);
+            alunoController.excluirAluno(cpf, id);
+                        JOptionPane.showMessageDialog(null, "Plano fechado com sucesso!");
             dispose();
         } catch (Exception e) {
            JOptionPane.showMessageDialog(null, e);
@@ -551,11 +567,11 @@ public class janelaInfoAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
-    private javax.swing.JRadioButton jRadioButton13;
+    private javax.swing.JRadioButton jRbAcad;
     private javax.swing.JRadioButton jRbCredito;
+    private javax.swing.JRadioButton jRbCross;
     private javax.swing.JRadioButton jRbDebito;
+    private javax.swing.JRadioButton jRbNat;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableInfoAluno;
     private javax.swing.JTextField jTextEmail;

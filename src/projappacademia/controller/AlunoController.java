@@ -49,12 +49,12 @@ public class AlunoController {
 
     
     }
-     public void excluirAluno(String cpf) throws ExceptionMVC
+     public void excluirAluno(String cpf, int id) throws ExceptionMVC
      {
          if(validarCPF(cpf))
          {
            Aluno aluno = new Aluno();
-            aluno.excluirAluno(cpf);  
+            aluno.excluirAluno(cpf, id);  
          }    
      }
      
@@ -81,5 +81,9 @@ public class AlunoController {
             
         }
         return true;
+    }
+
+    public ArrayList<Integer> retornaModalidadesAluno(int aluno_codigo) throws ExceptionMVC {
+        return new Aluno().retornaModalidadesAluno(aluno_codigo);
     }
 }
