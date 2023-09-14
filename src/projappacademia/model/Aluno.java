@@ -6,9 +6,6 @@ package projappacademia.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import projappacademia.dao.AlunoDAO;
 import projappacademia.dao.ExceptionMVC;
 

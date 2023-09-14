@@ -277,52 +277,78 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
             jCbNatacao.setEnabled(false);
         }
      }
+      else if (plano.equals("Completo")){
+            if(jCbAcademia.isSelected() && jCbNatacao.isSelected() && jCbCrossfit.isSelected()){
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            modalidadeIds.add(3);}
+        }    
+        else {modalidadeIds.clear(); jCbAcademia.setEnabled(true); jCbNatacao.setEnabled(true); jCbCrossfit.setEnabled(true); }
     }//GEN-LAST:event_jCbAcademiaActionPerformed
 
     private void jCbNatacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbNatacaoActionPerformed
-     escolheMetodos();
-    }//GEN-LAST:event_jCbNatacaoActionPerformed
-
-    private void jCbCrossfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbCrossfitActionPerformed
-    escolheMetodos();
-    }//GEN-LAST:event_jCbCrossfitActionPerformed
-    
-    private void escolheMetodos() {
-    String plano = jTfPlanoAluno.getText();
-    
-    
-    if (plano.equals("Basico")) {
-        if (jCbAcademia.isSelected()) {
-            modalidadeIds.add(1);
-            jCbNatacao.setEnabled(false);
-            jCbCrossfit.setEnabled(false);
-        } else if (jCbNatacao.isSelected()) {
-            modalidadeIds.add(2);
-            jCbAcademia.setEnabled(false);
-            jCbCrossfit.setEnabled(false);
-        } else if (jCbCrossfit.isSelected()) {
-            modalidadeIds.add(3);
-            jCbAcademia.setEnabled(false);
-            jCbNatacao.setEnabled(false);
-        } else {modalidadeIds.clear(); jCbAcademia.setEnabled(true); jCbNatacao.setEnabled(true); jCbCrossfit.setEnabled(true); }
+        String plano = jTfPlanoAluno.getText();
         
-    } else if (plano.equals("Intermediario")) {
+        if (plano.equals("Basico")) {
+        
+                if (jCbNatacao.isSelected()) {
+                modalidadeIds.add(2);
+                jCbAcademia.setEnabled(false);
+                jCbCrossfit.setEnabled(false);
+                } 
+        }
+        else if (plano.equals("Intermediario")) {
         if (jCbAcademia.isSelected() && jCbNatacao.isSelected()) {
             modalidadeIds.add(1);
             modalidadeIds.add(2);
             jCbCrossfit.setEnabled(false);
-        } else if (jCbAcademia.isSelected() && jCbCrossfit.isSelected()) {
-            modalidadeIds.add(1);
-            modalidadeIds.add(3);
-            jCbNatacao.setEnabled(false);
-        } else if (jCbNatacao.isSelected() && jCbCrossfit.isSelected()) {
+        }  else if (jCbNatacao.isSelected() && jCbCrossfit.isSelected()) {
             modalidadeIds.add(2);
             modalidadeIds.add(3);
             jCbAcademia.setEnabled(false);
+           }
         }
+         else if (plano.equals("Completo")){
+            if(jCbAcademia.isSelected() && jCbNatacao.isSelected() && jCbCrossfit.isSelected()){
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            modalidadeIds.add(3);}
+        }    
         else {modalidadeIds.clear(); jCbAcademia.setEnabled(true); jCbNatacao.setEnabled(true); jCbCrossfit.setEnabled(true); }
-    }
-}
+    }//GEN-LAST:event_jCbNatacaoActionPerformed
+
+    private void jCbCrossfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbCrossfitActionPerformed
+        String plano = jTfPlanoAluno.getText();
+        if (plano.equals("Basico")) {
+            if (jCbCrossfit.isSelected()) {
+                modalidadeIds.add(3);
+                jCbAcademia.setEnabled(false);
+                jCbNatacao.setEnabled(false);
+            }
+        }
+        else if (plano.equals("Intermediario")) {
+            if (jCbCrossfit.isSelected() && jCbAcademia.isSelected()) {
+                modalidadeIds.add(1);
+                modalidadeIds.add(3);
+                jCbCrossfit.setEnabled(false);
+
+            } else if (jCbCrossfit.isSelected() && jCbNatacao.isSelected()) {
+                modalidadeIds.add(2);
+                modalidadeIds.add(3);
+                jCbAcademia.setEnabled(false);
+            }
+        }
+            else if (plano.equals("Completo")){
+            if(jCbAcademia.isSelected() && jCbNatacao.isSelected() && jCbCrossfit.isSelected()){
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            modalidadeIds.add(3);}
+        }    
+        else {modalidadeIds.clear(); jCbAcademia.setEnabled(true); jCbNatacao.setEnabled(true); jCbCrossfit.setEnabled(true); }
+    }//GEN-LAST:event_jCbCrossfitActionPerformed
+    
+   
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
