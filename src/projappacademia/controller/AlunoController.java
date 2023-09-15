@@ -2,6 +2,7 @@
 package projappacademia.controller;
 
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -85,5 +86,9 @@ public class AlunoController {
 
     public ArrayList<Integer> retornaModalidadesAluno(int aluno_codigo) throws ExceptionMVC {
         return new Aluno().retornaModalidadesAluno(aluno_codigo);
+    }
+
+    public void editarModalidade(int codAluno, ArrayList<Integer> modalidadeIds) throws SQLException {
+        new Aluno().editarModalidade(codAluno, modalidadeIds); 
     }
 }

@@ -100,10 +100,86 @@ public class AlunoDAO {
     
     return aluno;
 }
-    
+   public void editarModalidade(int codAluno, ArrayList<Integer> modalidadeIds) throws SQLException {
+    Connection connection = null;
+    PreparedStatement pStatement = null;
+
+    try {
+        connection = new ConnectionMVC().getConnection();
+        connection.setAutoCommit(false); // Desativa o commit automático
+
+        // Obtém as modalidades atuais do aluno
+        ArrayList<Integer> modalidadesAtuais = obterModalidadesAtuaisDoAluno(codAluno);
+
+        // Remove modalidades extras (se houver)
+        modalidadesAtuais.removeAll(modalidadeIds);
+
+        // Adiciona modalidades adicionais (se houver)
+        modalidadeIds.removeAll(modalidadesAtuais);
+
+        String sqlModalidade = "UPDATE aluno_has_modalidade SET modalidade_codigo = ? WHERE aluno_codigo = ?";
+        pStatement = connection.prepareStatement(sqlModalidade);
+
+        // Insere as modalidades adicionais
+        for (int modalidadeId : modalidadeIds) {
+            pStatement.setInt(1, modalidadeId);
+            pStatement.setInt(2, codAluno);
+            pStatement.executeUpdate();
+        }
+
+        // Confirma a transação após todas as atualizações
+        connection.commit();
+    } catch (SQLException e) {
+        if (connection != null) {
+            try {
+                connection.rollback(); // Desfaz a transação em caso de erro
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
+        }
+        throw new SQLException("Erro ao inscrever aluno nas modalidades: " + e.getMessage());
+    } finally {
+        if (pStatement != null) {
+            pStatement.close();
+        }
+        if (connection != null) {
+            connection.setAutoCommit(true); // Ativa o commit automático novamente
+            connection.close();
+        }
+    }
+}
+
+public ArrayList<Integer> obterModalidadesAtuaisDoAluno(int codAluno) throws SQLException {
+    ArrayList<Integer> modalidadesAtuais = new ArrayList<>();
+    String sql = "SELECT modalidade_codigo FROM aluno_has_modalidade WHERE aluno_codigo = ?";
+    PreparedStatement pStatement = null;
+    ResultSet resultSet = null;
+    Connection connection = null;
+
+    try {
+        connection = new ConnectionMVC().getConnection();
+        pStatement = connection.prepareStatement(sql);
+        pStatement.setInt(1, codAluno);
+        resultSet = pStatement.executeQuery();
+
+        while (resultSet.next()) {
+            int modalidadeId = resultSet.getInt("modalidade_codigo");
+            modalidadesAtuais.add(modalidadeId);
+        }
+    } finally {
+        if (resultSet != null) {
+            resultSet.close();
+        }
+        if (pStatement != null) {
+            pStatement.close();
+        }
+    }
+
+    return modalidadesAtuais;
+}
+           
     public void editarAluno(Aluno aluno) throws ExceptionMVC{
         String sql = "UPDATE aluno SET nome=?, cpf=?, email=?, tel=?, dataNascimento=?, endereco=?, cep=?, plano=?, formaPagamento=?" +" WHERE cpf = '" +aluno.getCpf() +"'" ;
-        //String sqlModalidade = "UPDATE aluno_has_modalidade SET modalidade_codigo = "
     Connection connection = null;
     PreparedStatement pStatement = null;
     

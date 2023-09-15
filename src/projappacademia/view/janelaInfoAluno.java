@@ -11,10 +11,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import projappacademia.controller.AlunoController;
+import projappacademia.dao.AlunoDAO;
 import projappacademia.model.Aluno;
 
 public class janelaInfoAluno extends javax.swing.JFrame {
     String tipoPagamento;   
+    ArrayList<Integer> modalidadeIds = new ArrayList<Integer>();
    
     public janelaInfoAluno(Aluno aluno) {
         initComponents();
@@ -30,8 +32,8 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jFormattedTextCEP.setText(aluno.getCep());
         jFormattedTextDtNasc.setText(aluno.getDataNascimento());
         jComboBoxPlano.setSelectedItem(aluno.getPlano());
-        if(aluno.getFormaPagamento().equals("Crédito")){jRbCredito.setSelected(true);}
-        else {jRbDebito.setSelected(true);}
+        if(aluno.getFormaPagamento().equals("Credito")){jRbCredito.setSelected(true);}
+        else if(aluno.getFormaPagamento().equals("Debito")){jRbDebito.setSelected(true);}
         
         
             try {
@@ -40,9 +42,9 @@ public class janelaInfoAluno extends javax.swing.JFrame {
                 modalidadesAluno = alunocont.retornaModalidadesAluno(codAluno);
                 
                 for(int i : modalidadesAluno){
-                    if(i == 1){jRbAcad.setSelected(true);}
-                    if(i == 2){jRbNat.setSelected(true);}
-                    if(i == 3){jRbCross.setSelected(true);}
+                    if(i == 1){jCbAcademia.setSelected(true);}
+                    if(i == 2){jCbNatacao.setSelected(true);}
+                    if(i == 3){jCbCrossfit.setSelected(true);}
                 }
                
                 
@@ -93,15 +95,15 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jLabelPlano = new javax.swing.JLabel();
         jComboBoxPlano = new javax.swing.JComboBox<>();
         jLabelModalidade = new javax.swing.JLabel();
-        jRbAcad = new javax.swing.JRadioButton();
-        jRbNat = new javax.swing.JRadioButton();
-        jRbCross = new javax.swing.JRadioButton();
         jLabelFormPagamento = new javax.swing.JLabel();
         jRbCredito = new javax.swing.JRadioButton();
         jRbDebito = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInfoAluno = new javax.swing.JTable();
         jButtonVolta = new javax.swing.JButton();
+        jCbAcademia = new javax.swing.JCheckBox();
+        jCbNatacao = new javax.swing.JCheckBox();
+        jCbCrossfit = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -192,7 +194,7 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jLabelPlano.setForeground(new java.awt.Color(255, 255, 255));
         jLabelPlano.setText("Plano:");
 
-        jComboBoxPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Básico", "Intermediario", "Completo" }));
+        jComboBoxPlano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Basico", "Intermediario", "Completo" }));
         jComboBoxPlano.setRequestFocusEnabled(false);
         jComboBoxPlano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,24 +205,12 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jLabelModalidade.setForeground(new java.awt.Color(255, 255, 255));
         jLabelModalidade.setText("Modalidades:");
 
-        jRbAcad.setForeground(new java.awt.Color(255, 255, 255));
-        jRbAcad.setText("Academia");
-        jRbAcad.setContentAreaFilled(false);
-
-        jRbNat.setForeground(new java.awt.Color(255, 255, 255));
-        jRbNat.setText("Natação");
-        jRbNat.setContentAreaFilled(false);
-
-        jRbCross.setForeground(new java.awt.Color(255, 255, 255));
-        jRbCross.setText("Crossfit");
-        jRbCross.setContentAreaFilled(false);
-
         jLabelFormPagamento.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFormPagamento.setText("Forma de pagamento:");
 
         buttonGroupFormPag.add(jRbCredito);
         jRbCredito.setForeground(new java.awt.Color(255, 255, 255));
-        jRbCredito.setText("Crédito");
+        jRbCredito.setText("Credito");
         jRbCredito.setContentAreaFilled(false);
         jRbCredito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,7 +220,7 @@ public class janelaInfoAluno extends javax.swing.JFrame {
 
         buttonGroupFormPag.add(jRbDebito);
         jRbDebito.setForeground(new java.awt.Color(255, 255, 255));
-        jRbDebito.setText("Débito");
+        jRbDebito.setText("Debito");
         jRbDebito.setContentAreaFilled(false);
         jRbDebito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +253,33 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         jButtonVolta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltaActionPerformed(evt);
+            }
+        });
+
+        jCbAcademia.setForeground(new java.awt.Color(255, 255, 255));
+        jCbAcademia.setText("Academia");
+        jCbAcademia.setContentAreaFilled(false);
+        jCbAcademia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbAcademiaActionPerformed(evt);
+            }
+        });
+
+        jCbNatacao.setForeground(new java.awt.Color(255, 255, 255));
+        jCbNatacao.setText("Natacao");
+        jCbNatacao.setContentAreaFilled(false);
+        jCbNatacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbNatacaoActionPerformed(evt);
+            }
+        });
+
+        jCbCrossfit.setForeground(new java.awt.Color(255, 255, 255));
+        jCbCrossfit.setText("Crossfit");
+        jCbCrossfit.setContentAreaFilled(false);
+        jCbCrossfit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCbCrossfitActionPerformed(evt);
             }
         });
 
@@ -302,27 +319,24 @@ public class janelaInfoAluno extends javax.swing.JFrame {
                                 .addComponent(jBtFecharPlano)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonVolta))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabelPlano)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBoxPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabelModalidade)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRbAcad)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRbNat)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jRbCross)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabelFormPagamento)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jRbDebito)
-                                        .addComponent(jRbCredito))
-                                    .addGap(142, 142, 142)))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabelPlano)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabelModalidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCbAcademia)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCbNatacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCbCrossfit))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabelFormPagamento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRbDebito)
+                                    .addComponent(jRbCredito)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -364,9 +378,9 @@ public class janelaInfoAluno extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelModalidade)
-                            .addComponent(jRbAcad)
-                            .addComponent(jRbNat)
-                            .addComponent(jRbCross))
+                            .addComponent(jCbAcademia)
+                            .addComponent(jCbNatacao)
+                            .addComponent(jCbCrossfit))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelFormPagamento)
@@ -476,15 +490,21 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         String cep = jFormattedTextCEP.getText();
         String plano = String.valueOf(jComboBoxPlano.getSelectedItem());
         
-        
+        if (!modalidadeIds.isEmpty()){
         try{
         AlunoController alunoController = new AlunoController();
+        int codAluno= alunoController.buscaIdAluno(cpf);
+        AlunoDAO alunoDAO = new AlunoDAO();
+        alunoDAO.obterModalidadesAtuaisDoAluno(codAluno);
+        alunoController.editarModalidade(codAluno, modalidadeIds);
         alunoController.editarAluno(nome, cpf, email, tel, dataNascimento, endereco, cep, plano, tipoPagamento);
         
             JOptionPane.showMessageDialog(null, "Informações do aluno atualizadas com sucesso!");
+            
         }catch(Exception e){
             //JOptionPane.showMessageDialog(null, "Não foi possível atualizar as informações do aluno");
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "erro aqui:"+ e);
+        }
         }
     }//GEN-LAST:event_jBtEditarAlunoActionPerformed
 
@@ -509,6 +529,121 @@ public class janelaInfoAluno extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jBtFecharPlanoActionPerformed
+
+    private void jCbCrossfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbCrossfitActionPerformed
+         String plano = (String) jComboBoxPlano.getSelectedItem();
+         
+         
+         if(!jCbAcademia.isSelected() && !jCbNatacao.isSelected() && !jCbCrossfit.isSelected()){
+            modalidadeIds.clear(); 
+            jCbAcademia.setEnabled(true); 
+            jCbNatacao.setEnabled(true); 
+            jCbCrossfit.setEnabled(true); 
+        }
+          if (plano.equals("Basico") && jCbCrossfit.isSelected()) {
+            
+                modalidadeIds.add(3);
+                jCbAcademia.setEnabled(false);
+                jCbNatacao.setEnabled(false);
+            
+        }
+        else if (plano.equals("Intermediario")) {
+            if (jCbCrossfit.isSelected() && jCbAcademia.isSelected()) {
+                modalidadeIds.add(1);
+                modalidadeIds.add(3);
+                jCbNatacao.setEnabled(false);
+
+            } else if (jCbCrossfit.isSelected() && jCbNatacao.isSelected()) {
+                modalidadeIds.add(2);
+                modalidadeIds.add(3);
+                jCbAcademia.setEnabled(false);
+            }
+        }
+            else if (plano.equals("Completo")){
+            if(jCbAcademia.isSelected() && jCbNatacao.isSelected() && jCbCrossfit.isSelected()){
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            modalidadeIds.add(3);}
+        }    
+            
+    }//GEN-LAST:event_jCbCrossfitActionPerformed
+
+    private void jCbAcademiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbAcademiaActionPerformed
+        String plano = (String) jComboBoxPlano.getSelectedItem();
+     
+        if(!jCbAcademia.isSelected() && !jCbNatacao.isSelected() && !jCbCrossfit.isSelected()){
+            modalidadeIds.clear(); 
+            jCbAcademia.setEnabled(true); 
+            jCbNatacao.setEnabled(true); 
+            jCbCrossfit.setEnabled(true); 
+        }
+       if (plano.equals("Basico")) {
+           
+        if (jCbAcademia.isSelected()) {
+            modalidadeIds.add(1);
+            jCbNatacao.setEnabled(false);
+            jCbCrossfit.setEnabled(false);
+        }
+        
+     } else if (plano.equals("Intermediario")) {
+        
+         if (jCbAcademia.isSelected() && jCbNatacao.isSelected()) {
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            jCbCrossfit.setEnabled(false);
+        } else if (jCbAcademia.isSelected() && jCbCrossfit.isSelected()) {
+            modalidadeIds.add(1);
+            modalidadeIds.add(3);
+            jCbNatacao.setEnabled(false);
+        }
+     }
+      else if (plano.equals("Completo")){
+            if(jCbAcademia.isSelected() && jCbNatacao.isSelected() && jCbCrossfit.isSelected()){
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            modalidadeIds.add(3);}
+        }    
+        
+         
+         
+    }//GEN-LAST:event_jCbAcademiaActionPerformed
+
+    private void jCbNatacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbNatacaoActionPerformed
+        String plano = (String) jComboBoxPlano.getSelectedItem();
+        
+        if(!jCbAcademia.isSelected() && !jCbNatacao.isSelected() && !jCbCrossfit.isSelected()){
+            modalidadeIds.clear(); 
+            jCbAcademia.setEnabled(true); 
+            jCbNatacao.setEnabled(true); 
+            jCbCrossfit.setEnabled(true); 
+        }
+        if (plano.equals("Basico") && jCbNatacao.isSelected()) {
+
+                modalidadeIds.add(2);
+                jCbAcademia.setEnabled(false);
+                jCbCrossfit.setEnabled(false);
+               
+        }
+        else if (plano.equals("Intermediario")) {
+        if (jCbAcademia.isSelected() && jCbNatacao.isSelected()) {
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            jCbCrossfit.setEnabled(false);
+            
+        }  else if (jCbNatacao.isSelected() && jCbCrossfit.isSelected()) {
+            modalidadeIds.add(2);
+            modalidadeIds.add(3);
+            jCbAcademia.setEnabled(false);
+           }
+        }
+         else if (plano.equals("Completo")){
+            if(jCbAcademia.isSelected() && jCbNatacao.isSelected() && jCbCrossfit.isSelected()){
+            modalidadeIds.add(1);
+            modalidadeIds.add(2);
+            modalidadeIds.add(3);}
+        }    
+        
+    }//GEN-LAST:event_jCbNatacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -550,6 +685,9 @@ public class janelaInfoAluno extends javax.swing.JFrame {
     private javax.swing.JButton jBtEditarAluno;
     private javax.swing.JButton jBtFecharPlano;
     private javax.swing.JButton jButtonVolta;
+    private javax.swing.JCheckBox jCbAcademia;
+    private javax.swing.JCheckBox jCbCrossfit;
+    private javax.swing.JCheckBox jCbNatacao;
     private javax.swing.JComboBox<String> jComboBoxPlano;
     private javax.swing.JFormattedTextField jFormattedTextCEP;
     private javax.swing.JFormattedTextField jFormattedTextCPF;
@@ -567,11 +705,8 @@ public class janelaInfoAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRbAcad;
     private javax.swing.JRadioButton jRbCredito;
-    private javax.swing.JRadioButton jRbCross;
     private javax.swing.JRadioButton jRbDebito;
-    private javax.swing.JRadioButton jRbNat;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableInfoAluno;
     private javax.swing.JTextField jTextEmail;

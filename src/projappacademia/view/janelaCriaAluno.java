@@ -172,7 +172,7 @@ public class janelaCriaAluno extends javax.swing.JFrame {
 
         buttonGroupFormPagamento.add(jRadioButtonCredito);
         jRadioButtonCredito.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonCredito.setText("Crédito");
+        jRadioButtonCredito.setText("Credito");
         jRadioButtonCredito.setContentAreaFilled(false);
         jRadioButtonCredito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +182,7 @@ public class janelaCriaAluno extends javax.swing.JFrame {
 
         buttonGroupFormPagamento.add(jRadioButtonDebito);
         jRadioButtonDebito.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonDebito.setText("Débito");
+        jRadioButtonDebito.setText("Debito");
         jRadioButtonDebito.setContentAreaFilled(false);
         jRadioButtonDebito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

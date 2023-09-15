@@ -62,6 +62,10 @@ public class Aluno {
     public ArrayList<Integer> retornaModalidadesAluno(int aluno_codigo) throws ExceptionMVC{
        return new AlunoDAO().retornaModalidadesAluno(aluno_codigo);
     }
+   
+    public void editarModalidade(int codAluno, ArrayList<Integer> modalidadeIds) throws SQLException {
+        new AlunoDAO().editarModalidade(codAluno, modalidadeIds);
+    }
     
     public String getPlano() {
         return plano;
@@ -150,6 +154,8 @@ public class Aluno {
     public void setModalidades(ArrayList<String> modalidades) {
         this.modalidades = modalidades;
     }
+
+    
 
     
     
