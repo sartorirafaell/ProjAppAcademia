@@ -14,15 +14,15 @@ public class AlunoController {
     
     public boolean cadastrarAluno(String nome,String cpf,String email,String tel,String dataNascimento,String endereco,String cep,String plano,String formaPagamento) throws ParseException, ExceptionMVC{
     
-        if(nome != null && nome.length()>0 && validarCPF(cpf) && email != null && email.length()>0 && tel != null && tel.length()>0 && validarData(dataNascimento) && endereco != null 
+       if(nome != null && nome.length()>0 && validarCPF(cpf) && email != null && email.length()>0 && tel != null && tel.length()>0 && validarData(dataNascimento) && endereco != null 
                 && endereco.length()>0 && cep != null && plano != null  && formaPagamento != null) {
         
             
             Aluno aluno = new Aluno(nome, cpf, email, tel, dataNascimento, endereco, cep, plano, formaPagamento);
             aluno.cadastrarAluno(aluno);
          return true;  
-        }
-        return false;
+       }
+       return false;
     }
     
     public void inscreverEmModalidades(int alunoId, ArrayList<Integer> modalidadeIds) throws ExceptionMVC {
