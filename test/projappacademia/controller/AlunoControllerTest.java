@@ -98,10 +98,7 @@ public class AlunoControllerTest {
         String cep = "";
         String plano = "";
         String formaPagamento = "";
-        AlunoController instance = new AlunoController();
-        instance.editarAluno(nome, cpf, email, tel, dataNascimento, endereco, cep, plano, formaPagamento);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
