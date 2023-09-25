@@ -30,6 +30,8 @@ public class AlunoControllerTeste {
        else {   System.out.println("Falha em teste"); } 
     }
     
+    public void testeListarAluno(){}
+    
     
     
     public static void main(String[] args) {
