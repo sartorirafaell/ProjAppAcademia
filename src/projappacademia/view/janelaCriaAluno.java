@@ -416,7 +416,7 @@ public class janelaCriaAluno extends javax.swing.JFrame {
       
         boolean sucesso;
        Aluno aluno = null;
-        
+      
         try{
             AlunoController alunoController = new AlunoController();
             sucesso = alunoController.cadastrarAluno(jTextFieldNome.getText(), jFormattedTextFieldCPF.getText(), jTextFieldEmail.getText(), jFormattedTextFieldTel.getText(), 

@@ -5,7 +5,7 @@
  */
 package projappacademia.controller.comJUnit;
 
-import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import projappacademia.controller.AlunoController;
 import static org.junit.Assert.*;
-import projappacademia.dao.ExceptionMVC;
+
 import projappacademia.model.Aluno;
 
 /**
@@ -48,7 +48,7 @@ public class AlunoControllerTest {
     @Test
     public void testCadastrarAluno() throws Exception {
         
-        String nome = "Rafael";
+        String nome = "";
         String cpf = "036.552.650-93";
         String email = "rafael@gmail.com";
         String tel = "(51) 9 8160-8853";
@@ -77,7 +77,7 @@ public class AlunoControllerTest {
     @Test
     public void testListarAluno() throws Exception {
         
-        String cpf = "036.552.650-93";
+        String cpf = "036.552.650-9";
         Aluno aluno = alunoControlTest.listarAluno(cpf);
         assertNotNull(aluno);
        
