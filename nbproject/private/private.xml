@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/771900057/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/model/Aluno.java</file>
             <file>file:/C:/Users/771900057/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/dao/AlunoDAO.java</file>
             <file>file:/C:/Users/771900057/Documents/NetBeansProjects/ProjAppAcademia/test/projappacademia/controller/comJUnit/AlunoControllerTest.java</file>
@@ -10,6 +11,14 @@
             <file>file:/C:/Users/771900057/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/controller/AlunoController.java</file>
             <file>file:/C:/Users/771900057/Documents/NetBeansProjects/ProjAppAcademia/test/projappacademia/controller/semJUnit/AlunoControllerTeste.java</file>
             <file>file:/C:/Users/771900057/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/dao/ConnectionMVC.java</file>
+=======
+            <file>file:/C:/Users/Rafael/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/view/janelaLogin.java</file>
+            <file>file:/C:/Users/Rafael/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/view/janelaInfoAluno.java</file>
+            <file>file:/C:/Users/Rafael/Documents/NetBeansProjects/ProjAppAcademia/test/projappacademia/controller/AlunoControllerTest.java</file>
+            <file>file:/C:/Users/Rafael/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/view/janelaCriaAluno.java</file>
+            <file>file:/C:/Users/Rafael/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/view/janelaEsqueciSenha.java</file>
+            <file>file:/C:/Users/Rafael/Documents/NetBeansProjects/ProjAppAcademia/src/projappacademia/view/janelaInicial.java</file>
+>>>>>>> f406bf7c54a0b831a60abf393bc782a1eecbc589
         </group>
     </open-files>
 </project-private>
