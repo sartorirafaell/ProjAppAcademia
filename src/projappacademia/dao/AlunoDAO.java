@@ -59,7 +59,7 @@ public class AlunoDAO {
     
     Connection connection = null;
     PreparedStatement pStatement = null;
-    Aluno aluno = null; // Inicialize como nulo
+    Aluno aluno = null; 
     
     try {
         connection = new ConnectionMVC().getConnection();
