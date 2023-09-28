@@ -494,8 +494,6 @@ public class janelaInfoAluno extends javax.swing.JFrame {
         try{
         AlunoController alunoController = new AlunoController();
         int codAluno= alunoController.buscaIdAluno(cpf);
-        AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.obterModalidadesAtuaisDoAluno(codAluno);
         alunoController.editarModalidade(codAluno, modalidadeIds);
         alunoController.editarAluno(nome, cpf, email, tel, dataNascimento, endereco, cep, plano, tipoPagamento);
         

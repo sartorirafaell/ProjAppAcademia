@@ -106,29 +106,26 @@ public class AlunoDAO {
 
     try {
         connection = new ConnectionMVC().getConnection();
-        connection.setAutoCommit(false); // Desativa o commit automático
+        
+ 
+        //Executa a instrução DELETE para as modalidades antigas do aluno
+        String sqlDeletaModalidade = "DELETE FROM aluno_has_modalidade WHERE aluno_codigo = ?";
+        pStatement = connection.prepareStatement(sqlDeletaModalidade);
+        pStatement.setInt(1, codAluno);
+        pStatement.execute();
 
-        // Obtém as modalidades atuais do aluno
-        ArrayList<Integer> modalidadesAtuais = obterModalidadesAtuaisDoAluno(codAluno);
-
-        // Remove modalidades extras (se houver)
-        modalidadesAtuais.removeAll(modalidadeIds);
-
-        // Adiciona modalidades adicionais (se houver)
-        modalidadeIds.removeAll(modalidadesAtuais);
-
-        String sqlModalidade = "UPDATE aluno_has_modalidade SET modalidade_codigo = ? WHERE aluno_codigo = ?";
+        
+        // Executa a instrução para Inserir novas modalidades ao aluno
+        String sqlModalidade = "INSERT INTO aluno_has_modalidade (aluno_codigo, modalidade_codigo) VALUES (?, ?)";
         pStatement = connection.prepareStatement(sqlModalidade);
 
         // Insere as modalidades adicionais
         for (int modalidadeId : modalidadeIds) {
-            pStatement.setInt(1, modalidadeId);
-            pStatement.setInt(2, codAluno);
+            pStatement.setInt(1, codAluno);
+            pStatement.setInt(2, modalidadeId);
             pStatement.executeUpdate();
         }
 
-        // Confirma a transação após todas as atualizações
-        connection.commit();
     } catch (SQLException e) {
         if (connection != null) {
             try {
@@ -147,35 +144,6 @@ public class AlunoDAO {
             connection.close();
         }
     }
-}
-
-public ArrayList<Integer> obterModalidadesAtuaisDoAluno(int codAluno) throws SQLException {
-    ArrayList<Integer> modalidadesAtuais = new ArrayList<>();
-    String sql = "SELECT modalidade_codigo FROM aluno_has_modalidade WHERE aluno_codigo = ?";
-    PreparedStatement pStatement = null;
-    ResultSet resultSet = null;
-    Connection connection = null;
-
-    try {
-        connection = new ConnectionMVC().getConnection();
-        pStatement = connection.prepareStatement(sql);
-        pStatement.setInt(1, codAluno);
-        resultSet = pStatement.executeQuery();
-
-        while (resultSet.next()) {
-            int modalidadeId = resultSet.getInt("modalidade_codigo");
-            modalidadesAtuais.add(modalidadeId);
-        }
-    } finally {
-        if (resultSet != null) {
-            resultSet.close();
-        }
-        if (pStatement != null) {
-            pStatement.close();
-        }
-    }
-
-    return modalidadesAtuais;
 }
            
     public void editarAluno(Aluno aluno) throws ExceptionMVC{

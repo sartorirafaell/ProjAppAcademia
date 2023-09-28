@@ -5,6 +5,7 @@ package projappacademia.controller;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 import projappacademia.dao.ExceptionMVC;
 
@@ -15,7 +16,7 @@ public class AlunoController {
     //Método que após verificar se todos os campos estão preenchidos e valida o CPF
     public boolean cadastrarAluno(String nome,String cpf,String email,String tel,String dataNascimento,String endereco,String cep,String plano,String formaPagamento) throws ParseException, ExceptionMVC{
     
-       if(nome != null && nome.length()>0 && validarCPF(cpf) && email != null && email.length()>0 && tel != null && tel.length()>0 && validarData(dataNascimento) && endereco != null 
+       if(nome != null && nome.length()>0 && validarNome(nome) &&validarCPF(cpf) && email != null && email.length()>0 && tel != null && tel.length()>0 && validarData(dataNascimento) && endereco != null 
                 && endereco.length()>0 && cep != null && plano != null  && formaPagamento != null) {
         
             
@@ -43,7 +44,7 @@ public class AlunoController {
   
     //Método para inserir novos dados no aluno já cadastrado
     public void editarAluno(String nome,String cpf,String email,String tel,String dataNascimento,String endereco,String cep,String plano,String formaPagamento) throws ParseException, ExceptionMVC{
-         if(nome != null && nome.length()>0 && validarCPF(cpf) && email != null && email.length()>0 && tel != null && tel.length()>0 && validarData(dataNascimento) && endereco != null 
+         if(nome != null && nome.length()>0 && validarNome(nome) && validarCPF(cpf) && email != null && email.length()>0 && tel != null && tel.length()>0 && validarData(dataNascimento) && endereco != null 
                 && endereco.length()>0 && cep != null && plano != null  && formaPagamento != null) {
         
             
@@ -51,6 +52,9 @@ public class AlunoController {
             aluno.editarAluno(aluno);
           
         }
+         else{
+             JOptionPane.showMessageDialog(null, "Verifique todos os dados inseridos");;
+         }
 
     
     }
@@ -76,6 +80,15 @@ public class AlunoController {
             
         }
         return true;
+    }
+    
+    public boolean validarNome(String nome){
+        for (int i = 0; i<nome.length(); i++){
+        if (!Character.isLetter(nome.charAt(i))) {
+            return false; // Se nao encontrar numeros retorna true
+        }
+    }
+    return true;
     }
     //Método para validar a data de nascimento 
     public boolean validarData(String data){

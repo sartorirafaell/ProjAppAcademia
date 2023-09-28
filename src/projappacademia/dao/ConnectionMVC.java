@@ -17,10 +17,10 @@ public class ConnectionMVC {
         }
         try{
             //Conexão com o banco de dados utilizado para testes
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/appacademia1teste", "root", "");
+            //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/appacademia1teste", "root", "");
             
             //Conexão com o banco de dados
-           // conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/appacademia1", "root", "");
+           conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/appacademia1", "root", "");
         }catch(SQLException e){
             e.printStackTrace();
         }

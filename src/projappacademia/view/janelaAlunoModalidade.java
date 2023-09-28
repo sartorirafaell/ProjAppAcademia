@@ -330,7 +330,7 @@ public class janelaAlunoModalidade extends javax.swing.JFrame {
             if (jCbCrossfit.isSelected() && jCbAcademia.isSelected()) {
                 modalidadeIds.add(1);
                 modalidadeIds.add(3);
-                jCbCrossfit.setEnabled(false);
+                jCbNatacao.setEnabled(false);
 
             } else if (jCbCrossfit.isSelected() && jCbNatacao.isSelected()) {
                 modalidadeIds.add(2);
