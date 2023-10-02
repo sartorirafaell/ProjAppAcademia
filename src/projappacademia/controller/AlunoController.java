@@ -82,6 +82,7 @@ public class AlunoController {
         return true;
     }
     
+    //Metodo para validar que o nome não possui números
     public boolean validarNome(String nome){
         for (int i = 0; i<nome.length(); i++){
         if (!Character.isLetter(nome.charAt(i))) {

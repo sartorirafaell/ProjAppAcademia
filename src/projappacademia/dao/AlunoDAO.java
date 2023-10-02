@@ -13,6 +13,7 @@ import projappacademia.model.Aluno;
 
 public class AlunoDAO {
  
+    //Cadastra o aluno no banco de dados
     public void cadastrarAluno (Aluno aluno) throws ExceptionMVC{
         String sql = "insert into aluno (nome, cpf, email, tel, dataNascimento, endereco, cep, plano, formaPagamento) values (?,?,?,?,?,?,?,?,?)";
        
@@ -53,7 +54,7 @@ public class AlunoDAO {
     }
     
    
-    
+    //Busca os dados do aluno no banco de dados
     public Aluno listarAluno(String cpf) throws ExceptionMVC {
     String sql = "select * from aluno where cpf =  '" + cpf + "'";
     
@@ -100,6 +101,7 @@ public class AlunoDAO {
     
     return aluno;
 }
+   //Edita as modalidades do aluno já cadastrado
    public void editarModalidade(int codAluno, ArrayList<Integer> modalidadeIds) throws SQLException {
     Connection connection = null;
     PreparedStatement pStatement = null;
@@ -145,7 +147,7 @@ public class AlunoDAO {
         }
     }
 }
-           
+    //Insere novos dados do aluno já registrado no banco
     public void editarAluno(Aluno aluno) throws ExceptionMVC{
         String sql = "UPDATE aluno SET nome=?, cpf=?, email=?, tel=?, dataNascimento=?, endereco=?, cep=?, plano=?, formaPagamento=?" +" WHERE cpf = '" +aluno.getCpf() +"'" ;
     Connection connection = null;
@@ -185,6 +187,7 @@ public class AlunoDAO {
                
              }
         
+    //Exclui o aluno do banco
     public void excluirAluno(String cpf, int aluno_codigo)throws ExceptionMVC
     {
         String sql= "DELETE FROM aluno WHERE cpf = '" + cpf + "'";
@@ -216,6 +219,7 @@ public class AlunoDAO {
           }
     }
    
+    //Insere as modalidades do plano do aluno na tabela muitos para muitos do banco
      public void inscreverAlunoEmModalidades(int alunoId, ArrayList<Integer> modalidadeIds) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -245,6 +249,7 @@ public class AlunoDAO {
     }
 }
      
+     //Retorna as modalidades que o aluno está inscrito
       public ArrayList<Integer> retornaModalidadesAluno (int aluno_codigo) throws ExceptionMVC {
     ArrayList<Integer>modalidadeIds = new ArrayList<>();
     
@@ -269,6 +274,7 @@ public class AlunoDAO {
     return modalidadeIds;
 }
       
+     //Busca o codigo do aluno no banco de dados via CPF
      public int buscaIdAluno (String cpf) throws ExceptionMVC{
     String sql = "SELECT codigo from aluno where cpf = ?";
      Connection connection = null;
