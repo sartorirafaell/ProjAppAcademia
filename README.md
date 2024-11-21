@@ -5,8 +5,9 @@ O projeto é sobre um App para uma Academia utilizar com seus funcionários (rec
 Funcionalidades:
 
 - Funcionário realiza login (login e senha pré-definidos no bd)
-- Funcionário consegue:
-                       -  Buscar Aluno por CPF
-                       -  Abrir Planos
-                       -  Editar Planos
-                       -  Fechar Planos
+
+ Funcionário consegue:
+- Buscar Aluno por CPF
+- Abrir Planos
+- Editar Planos
+- Fechar Planos
